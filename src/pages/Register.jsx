@@ -1,6 +1,19 @@
 import React, { useState } from 'react'
 import { isEmail, isEmpty, isLength, isContainWhiteSpace } from '..//validator.js';
 
+// Material UI
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+
 const Register = () => {
   const [formData, setformData] = useState({name: "", phone: "", email: "", password: "", repassword: "", DOB: "", religion: "", preferSite: ""})
   const [errors, seterrors] = useState({name: "", phone: "", email: "", password: "", repassword: "", DOB: "", religion: "", preferSite: ""})
@@ -86,63 +99,49 @@ const Register = () => {
   }
   const thisYear = new Date().getFullYear();
   return (
-    <div>
-      <form novalidate>
-        <div className="form-group">
-          <input type="text" className="form-control" id="NameRegister" name="name" placeholder="Name" onChange={handleInputChange}/>
-        </div>
-        <div className="form-group">
-          <input type="number" className="form-control" id="PhoneRegister" name="phone" placeholder="Phone Number" onChange={handleInputChange}/>
-        </div>
-        <div className="form-group">
-          <input type="email" className="form-control" id="EmailRegister" name="phonne" aria-describedby="emailHelp" placeholder="Email" onChange={handleInputChange}/>
-        </div>
-        <div className="form-group">
-          <input type="password" className="form-control" id="PasswordRegister" name="password" placeholder="Password" onChange={handleInputChange}/>
-        </div>
-        <div className="form-group">
-          <input type="password" className="form-control" id="RetypePasswordRegister" name="repassword" placeholder="Re-type Password" onChange={handleInputChange}/>
-        </div>
-        <div className="form-group">
-          <label>Date of Birth</label>
-          <div className="row">
-            <div className="col-3">
-              <select className="form-control" id="DateRegister" name="day" onChange={handleDOBChange}>
-                <option selected disabled>Day</option>
-                {getOptions(1, 31)}
-              </select>
-            </div>
-            <div className="col-3">
-              <select className="form-control" id="MonthRegister" name="month" onChange={handleDOBChange}>
-                <option selected disabled>Month</option>
-                {getOptions(1, 12)}
-              </select>
-            </div>
-            <div className="col-3">
-              <select className="form-control" id="YearRegister" name="year" onChange={handleDOBChange}>
-                <option selected disabled>Year</option>
-                {getOptions(thisYear - 20, thisYear)}
-              </select>
-            </div>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline/>
+          <div className="paper">
+            <Typography component="h1" variant="h5">Đăng Ký</Typography>
           </div>
-        </div>
-        <div className="form-group">
-          <select className="form-control" id="Religion" name="religion" title="Religion" onChange={handleInputChange}>
-            <option selected disabled>Religion</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <select className="form-control" id="PreferSite" name="preferSite" onChange={handleInputChange}>
-            <option selected disabled>Prefer Site</option>
-          </select>
-        </div>
-        <div className="form-check">
-          <input type="checkbox" className="form-check-input" id="PrivacyAcceptance"/>
-          <label className="form-check-label" for="PrivacyAcceptance">I accept the privacy statement</label>
-        </div>
-        <button type="submit" className="btn btn-primary">Register</button>
-      </form>
-    </div>
+            <form action="">
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField autoComplete="firstname" name="firstname" variant="outlined" required fullWidth id="firstname" label="Họ" autoFocus/>
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField autoComplete="name" name="name" variant="outlined" required fullWidth id="name" label="Tên" autoFocus/>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField autoComplete="account" name="account" variant="outlined" required fullWidth id="account" label="Tài khoản" autoFocus/>
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField autoComplete="password" name="password" type="password" variant="outlined" required fullWidth id="password" label="Mật khẩu" autoFocus/>
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField autoComplete="password2" name="password2" type="password" variant="outlined" required fullWidth id="password" label="Xác Nhận Mật Khẩu" autoFocus/>
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField autoComplete="email" name="email" variant="outlined" required fullWidth id="email" label="Email" autoFocus/>
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField autoComplete="phone" name="phone" variant="outlined" required fullWidth id="phone" label="Số Điện Thoại" autoFocus/>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <FormControlLabel control={<Checkbox value="allowExtraEmails" color="primary" />} label="Nhận Các Thông Báo Và Ưu Đãi Mới Nhất"/>
+                </Grid>
+              </Grid>
+              
+                <Button type="submit" fullWidth variant="contained" color="primary" className="submit">Đăng ký</Button> 
+            </form>
+    </Container>
   )
 }
 
