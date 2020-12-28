@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { isEmail, isEmpty, isLength, isContainWhiteSpace } from '..//validator.js';
 
 // Material UI
@@ -15,9 +15,13 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 
 const Register = () => {
-  const [formData, setformData] = useState({name: "", phone: "", email: "", password: "", repassword: "", DOB: "", religion: "", preferSite: ""})
-  const [errors, seterrors] = useState({name: "", phone: "", email: "", password: "", repassword: "", DOB: "", religion: "", preferSite: ""})
-  const [formSubmitted, setformSubmitted] = useState(false)
+  const [formData, setformData] = useState({firstname: "", lastname: "", phone: "", email: "", password: "", repassword: "", DOB: "", religion: "", preferSite: ""})
+  const [errors, seterrors] = useState({firstname: "", lastname: "", phone: "", email: "", password: "", repassword: "", DOB: "", religion: "", preferSite: ""})
+  const initialformValidated = {
+    email: false, 
+    password: false
+  };
+  const [formValidated, setformValidated] = useState(initialformValidated)
   const [loading, setloading] = useState(false)
   const [day, setday] = useState(null)
   const [month, setmonth] = useState(null)
@@ -29,7 +33,7 @@ const Register = () => {
           ...prevData,
           [name]: value
       }))
-      console.log(formData);
+      // console.log(formData);
   }
   const handleDOBChange = (event) => {
     const { name, value } = event.target;
@@ -54,39 +58,57 @@ const Register = () => {
 }
 
   const validateLoginForm = (e) => {
-      let errors = {};
-      if (isEmpty(formData.email)) {
-          errors.email = "Email can't be blank";
-      } else if (!isEmail(formData.email)) {
-          errors.email = "Pleade enter a valid email";
+      let err = {};
+      if (formData.email) {
+        if (isEmpty(formData.email)) {
+          err.email = "Email can't be blank";
+        } else if (!isEmail(formData.email)) {
+          err.email = "Pleade enter a valid email";
+        }
       }
 
-      if (isEmpty(formData.password)) {
-          errors.password = "Password can't be blank";
-      }  else if (isContainWhiteSpace(formData.password)) {
-          errors.password = "Password should not contain white spaces";
-      } else if (!isLength(formData.password, { gte: 6, lte: 16, trim: true })) {
-          errors.password = "Password's length must between 6 to 16";
+      if (formData.password) {
+        if (isEmpty(formData.password)) {
+          err.password = "Password can't be blank";
+        }  else if (isContainWhiteSpace(formData.password)) {
+          err.password = "Password should not contain white spaces";
+        } else if (!isLength(formData.password, { gte: 6, lte: 16, trim: true })) {
+          err.password = "Password's length must between 6 to 16";
+        }
       }
-
-      if (isEmpty(errors)) {
-          return true;
+      seterrors(err)
+      if (isEmpty(err)) {
+        // change all value of formValidated to initial
+        setformValidated(initialformValidated)
+        return true;
       } else {
-          return errors;
+        // change value based on key of local err object
+        for (const key in err) {
+          setformValidated((prevData) => ({
+            ...prevData,
+            [key]: true
+          }));
+        }
+        return err;
       }
   }
 
-  const login = (e) => {
+  useEffect(() => {
+    return () => {
+      validateLoginForm();
+    }
+  }, [formData])
+  
+  const register = (e) => {
       e.preventDefault();
 
       let err = validateLoginForm();
-
       if(err === true) {
-          alert("You are successfully signed in...");
-          window.location.reload()
+        alert("You are successfully signed in...");
+        window.location.reload()
       } else {
-          seterrors(err);
-          setformSubmitted(true);
+        // alert the first error
+        alert(err[Object.keys(err)[0]]);
       }
   }
   
@@ -97,6 +119,7 @@ const Register = () => {
     }
     return options;
   }
+
   const thisYear = new Date().getFullYear();
   return (
     <Container component="main" maxWidth="xs">
@@ -107,39 +130,106 @@ const Register = () => {
             <form action="">
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
-                  <TextField autoComplete="firstname" name="firstname" variant="outlined" required fullWidth id="firstname" label="Họ" autoFocus/>
+                  <TextField  autoComplete="firstname" 
+                              name="firstname" 
+                              variant="outlined" 
+                              required 
+                              fullWidth 
+                              id="firstname" 
+                              label="Họ" 
+                              autoFocus 
+                              onChange={handleInputChange} />
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                  <TextField autoComplete="name" name="name" variant="outlined" required fullWidth id="name" label="Tên" autoFocus/>
+                  <TextField autoComplete="lastname" 
+                              name="lastname" 
+                              variant="outlined" 
+                              required 
+                              fullWidth 
+                              id="lastname" 
+                              label="Tên" 
+                              autoFocus/>
                 </Grid>
 
                 <Grid item xs={12}>
-                  <TextField autoComplete="account" name="account" variant="outlined" required fullWidth id="account" label="Tài khoản" autoFocus/>
+                  <TextField autoComplete="account" 
+                              name="account" 
+                              variant="outlined" 
+                              required fullWidth 
+                              id="account" 
+                              label="Tài khoản" 
+                              autoFocus
+                              onChange={handleInputChange} />
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                  <TextField autoComplete="password" name="password" type="password" variant="outlined" required fullWidth id="password" label="Mật khẩu" autoFocus/>
+                  <TextField  error={formValidated.password}
+                              helperText={errors.password}
+                              autoComplete="password" 
+                              name="password" 
+                              type="password" 
+                              variant="outlined" 
+                              required 
+                              fullWidth 
+                              id="password" 
+                              label="Mật khẩu" 
+                              autoFocus
+                              onChange={handleInputChange} />
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                  <TextField autoComplete="password2" name="password2" type="password" variant="outlined" required fullWidth id="password" label="Xác Nhận Mật Khẩu" autoFocus/>
+                  <TextField autoComplete="repassword" 
+                              name="repassword" 
+                              type="password" 
+                              variant="outlined" 
+                              required 
+                              fullWidth 
+                              id="repassword" 
+                              label="Xác Nhận Mật Khẩu" 
+                              autoFocus
+                              onChange={handleInputChange} />
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                  <TextField autoComplete="email" name="email" variant="outlined" required fullWidth id="email" label="Email" autoFocus/>
+                  <TextField  error={formValidated.email}
+                              helperText={errors.email}
+                              autoComplete="email" 
+                              name="email" 
+                              variant="outlined" 
+                              required 
+                              fullWidth 
+                              id="email" 
+                              label="Email" 
+                              autoFocus
+                              onChange={handleInputChange} />
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                  <TextField autoComplete="phone" name="phone" variant="outlined" required fullWidth id="phone" label="Số Điện Thoại" autoFocus/>
+                  <TextField autoComplete="phone" 
+                              name="phone"
+                               variant="outlined" 
+                               required 
+                               fullWidth 
+                               id="phone" 
+                               label="Số Điện Thoại" 
+                               autoFocus
+                               onChange={handleInputChange} />
                 </Grid>
 
                 <Grid item xs={12}>
-                  <FormControlLabel control={<Checkbox value="allowExtraEmails" color="primary" />} label="Nhận Các Thông Báo Và Ưu Đãi Mới Nhất"/>
+                  <FormControlLabel 
+                    control={<Checkbox value="allowExtraEmails" color="primary" />} 
+                    label="Nhận Các Thông Báo Và Ưu Đãi Mới Nhất"/>
                 </Grid>
               </Grid>
               
-                <Button type="submit" fullWidth variant="contained" color="primary" className="submit">Đăng ký</Button> 
+                <Button type="submit" 
+                        fullWidth 
+                        variant="contained" 
+                        color="primary" 
+                        className="submit"
+                        onClick={register}>Đăng ký</Button> 
             </form>
     </Container>
   )
