@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { isEmail, isEmpty, isLength, isContainWhiteSpace } from '..//validator.js';
+import { isEmail, isEmpty, isLength, isContainWhiteSpace, isPasswordMatch, isPhone, isName } from '..//validator.js';
+import Swal from 'sweetalert2'
 
 // Material UI
 import Avatar from "@material-ui/core/Avatar";
@@ -15,11 +16,16 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 
 const Register = () => {
-  const [formData, setformData] = useState({firstname: "", lastname: "", phone: "", email: "", password: "", repassword: "", DOB: "", religion: "", preferSite: ""})
-  const [errors, seterrors] = useState({firstname: "", lastname: "", phone: "", email: "", password: "", repassword: "", DOB: "", religion: "", preferSite: ""})
+  const [formData, setformData] = useState({firstname: "", lastname: "", username: "", phone: "", email: "", password: "", repassword: "", DOB: "2020-01-01", religion: "", preferSite: ""})
+  const [errors, seterrors] = useState({firstname: "", lastname: "", username: "",  phone: "", email: "", password: "", repassword: "",religion: "", preferSite: ""})
   const initialformValidated = {
+    firstname: false,
+    lastname: false,
+    username: false,
     email: false, 
-    password: false
+    password: false,
+    repassword: false,
+    phone:false
   };
   const [formValidated, setformValidated] = useState(initialformValidated)
   const [loading, setloading] = useState(false)
@@ -33,49 +39,50 @@ const Register = () => {
           ...prevData,
           [name]: value
       }))
-      // console.log(formData);
+      console.log(formData);
   }
-  const handleDOBChange = (event) => {
-    const { name, value } = event.target;
-    switch (name) {
-      case "day":
-        setday(value)
-        break;
-      case "month":
-        setmonth(value)
-        break;
-      case "year":
-        setyear(value)
-        break;
-    }
-    if(day && month && year) {
-      setformData(prevData => ({
-        ...prevData,
-        DOB: new Date(year, month - 1, day)
-      }));
-    } 
-    console.log(formData);
-}
 
   const validateLoginForm = (e) => {
       let err = {};
+
+      if (formData.firstname) {
+        if (!isName(formData.firstname)) {
+          err.firstname = "Please enter a valid first name";
+        }
+      }
+
+      if (formData.lastname) {
+        if (!isName(formData.lastname)) {
+          err.lastname = "Please enter a valid last name";
+        }
+      }
+
       if (formData.email) {
-        if (isEmpty(formData.email)) {
-          err.email = "Email can't be blank";
-        } else if (!isEmail(formData.email)) {
-          err.email = "Pleade enter a valid email";
+        if (!isEmail(formData.email)) {
+          err.email = "Please enter a valid email";
         }
       }
 
       if (formData.password) {
-        if (isEmpty(formData.password)) {
-          err.password = "Password can't be blank";
-        }  else if (isContainWhiteSpace(formData.password)) {
+        if (isContainWhiteSpace(formData.password)) {
           err.password = "Password should not contain white spaces";
         } else if (!isLength(formData.password, { gte: 6, lte: 16, trim: true })) {
           err.password = "Password's length must between 6 to 16";
         }
       }
+
+      if (formData.repassword) {
+        if (!isPasswordMatch(formData.password, formData.repassword)) {
+          err.repassword = "Your password does not match"
+        }
+      }
+
+      if (formData.phone) {
+        if (!isPhone(formData.phone)) {
+          err.phone = "Your phone number is not valid"
+        }
+      }
+
       seterrors(err)
       if (isEmpty(err)) {
         // change all value of formValidated to initial
@@ -99,17 +106,40 @@ const Register = () => {
     }
   }, [formData])
   
+  const isFieldEmpty = () => {
+    for (const key in formData) {
+      if (formData[key] === "") {
+        seterrors((prevData) => ({
+          ...prevData,
+          [key]: key + " can't be blank"
+        }))
+        setformValidated((prevData) => ({
+          ...prevData,
+          [key]: true
+        }));
+      }
+    }
+  }
   const register = (e) => {
       e.preventDefault();
 
-      let err = validateLoginForm();
-      if(err === true) {
-        alert("You are successfully signed in...");
-        window.location.reload()
-      } else {
-        // alert the first error
-        alert(err[Object.keys(err)[0]]);
-      }
+      // check if any field is empty
+      // yes => show error
+      // no => submit
+      isFieldEmpty(() => {
+        const err = validateLoginForm();
+        if(err === true) {
+          alert("You are successfully signed in...");
+          // window.location.reload()
+        } else {
+          // alert the first error
+          Swal.fire({
+            title: 'You have failed to sign up',
+            text: err[Object.keys(err)[0]],
+            icon: 'error'
+          })
+        }
+      })
   }
   
   const getOptions = (start, end) => {
@@ -120,7 +150,6 @@ const Register = () => {
     return options;
   }
 
-  const thisYear = new Date().getFullYear();
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
@@ -130,45 +159,54 @@ const Register = () => {
             <form action="">
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
-                  <TextField  autoComplete="firstname" 
+                  <TextField  error={formValidated.firstname}
+                              helperText={errors.firstname}
+                              autoComplete="firstname" 
                               name="firstname" 
                               variant="outlined" 
                               required 
                               fullWidth 
                               id="firstname" 
-                              label="Họ" 
+                              label="First Name" 
                               autoFocus 
                               onChange={handleInputChange} />
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                  <TextField autoComplete="lastname" 
+                  <TextField  error={formValidated.lastname}
+                              helperText={errors.lastname}
+                              autoComplete="lastname" 
                               name="lastname" 
                               variant="outlined" 
                               required 
                               fullWidth 
                               id="lastname" 
-                              label="Tên" 
-                              autoFocus/>
+                              label="Last Name" 
+                              autoFocus
+                              onChange={handleInputChange}/>
                 </Grid>
 
                 <Grid item xs={12}>
-                  <TextField autoComplete="account" 
+                  <TextField  error={formValidated.username}
+                              helperText={errors.username}
+                              autoComplete="account" 
                               name="account" 
                               variant="outlined" 
                               required fullWidth 
                               id="account" 
-                              label="Tài khoản" 
+                              label="Username" 
                               autoFocus
                               onChange={handleInputChange} />
                 </Grid>
 
                 <Grid item xs={12}>
-                  <TextField id="dob"
-                              label="Ngày Sinh"
+                  <TextField  id="DOB"
+                              label="DOB"
+                              name="DOB"
                               type="date"
                               required fullWidth 
-                              defaultValue="2020-01-01"/>
+                              defaultValue="2020-01-01"
+                              onChange={handleInputChange} />
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
@@ -181,20 +219,22 @@ const Register = () => {
                               required 
                               fullWidth 
                               id="password" 
-                              label="Mật khẩu" 
+                              label="Password" 
                               autoFocus
                               onChange={handleInputChange} />
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                  <TextField autoComplete="repassword" 
+                  <TextField  error={formValidated.repassword}
+                              helperText={errors.repassword}
+                              autoComplete="repassword" 
                               name="repassword" 
                               type="password" 
                               variant="outlined" 
                               required 
                               fullWidth 
                               id="repassword" 
-                              label="Xác Nhận Mật Khẩu" 
+                              label="Re-type Password" 
                               autoFocus
                               onChange={handleInputChange} />
                 </Grid>
@@ -214,21 +254,23 @@ const Register = () => {
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                  <TextField autoComplete="phone" 
+                  <TextField  error={formValidated.phone}
+                              helperText={errors.phone}
+                              autoComplete="phone" 
                               name="phone"
-                               variant="outlined" 
-                               required 
-                               fullWidth 
-                               id="phone" 
-                               label="Số Điện Thoại" 
-                               autoFocus
-                               onChange={handleInputChange} />
+                              variant="outlined" 
+                              required 
+                              fullWidth 
+                              id="phone" 
+                              label="Phone Number" 
+                              autoFocus
+                              onChange={handleInputChange} />
                 </Grid>
 
                 <Grid item xs={12}>
                   <FormControlLabel 
                     control={<Checkbox value="allowExtraEmails" color="primary" />} 
-                    label="Nhận Các Thông Báo Và Ưu Đãi Mới Nhất"/>
+                    label="Receive newest notifications and discount"/>
                 </Grid>
               </Grid>
               

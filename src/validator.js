@@ -1,11 +1,43 @@
 /**
- * Chek if email is valid
+ * Check if name is valid
+ * @prop String phone
+ * @returns Boolean
+ */
+export const isName = (name) => {
+    const re = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g;
+    return re.test(name);
+}
+
+/**
+ * Check if email is valid
  * @prop String email
  * @returns Boolean
  */
 export const isEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
+}
+
+/**
+ * Chek if repassword is equal to password
+ * @prop String password
+ * @prop String repassword
+ * @returns Boolean
+ */
+export const isPasswordMatch = (password, repassword) => {
+    if (password === repassword) {
+        return true
+    }
+}
+
+/**
+ * Chek if phone is valid
+ * @prop String phone
+ * @returns Boolean
+ */
+export const isPhone = (phone) => {
+    const re = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+    return re.test(phone);
 }
 
 /**
