@@ -25,15 +25,31 @@ const Login = () => {
                 <div className="paper">
                     <Typography component="h1" variant="h5">Đăng Nhập</Typography>
                     <form action="">
-                        <TextField variant="outlined" margin="normal" required fullWidth id="userName" label="Tài Khoản" name="userName" autoFocus/>
-                        <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Mật Khẩu" type="password" id="password"/>
+                        <TextField variant="outlined" 
+                                   margin="normal" 
+                                   required fullWidth 
+                                   id="userName" 
+                                   label="Tài Khoản" 
+                                   name="userName" 
+                                   autoFocus/>
+
+                        <TextField variant="outlined" 
+                                   margin="normal" 
+                                   required fullWidth 
+                                   name="password" 
+                                   label="Mật Khẩu" 
+                                   type="password" 
+                                   id="password"/>
 
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
                             label="Ghi nhớ đăng nhập"
                         />
 
-                        <Button type="submit" fullWidth variant="contained" color="primary"> Đăng Nhập</Button>
+                        <Button type="submit" 
+                                fullWidth 
+                                variant="contained" 
+                                color="primary">Đăng Nhập</Button>
 
                         <Grid container>
                             <Grid item xs>

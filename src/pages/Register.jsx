@@ -163,6 +163,14 @@ const Register = () => {
                               onChange={handleInputChange} />
                 </Grid>
 
+                <Grid item xs={12}>
+                  <TextField id="dob"
+                              label="Ngày Sinh"
+                              type="date"
+                              required fullWidth 
+                              defaultValue="2020-01-01"/>
+                </Grid>
+
                 <Grid item xs={12} sm={6}>
                   <TextField  error={formValidated.password}
                               helperText={errors.password}
