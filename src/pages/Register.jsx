@@ -189,11 +189,11 @@ const Register = () => {
                 <Grid item xs={12}>
                   <TextField  error={formValidated.username}
                               helperText={errors.username}
-                              autoComplete="account" 
-                              name="account" 
+                              autoComplete="username" 
+                              name="username" 
                               variant="outlined" 
                               required fullWidth 
-                              id="account" 
+                              id="username" 
                               label="Username" 
                               autoFocus
                               onChange={handleInputChange} />
