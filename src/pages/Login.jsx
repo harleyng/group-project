@@ -9,9 +9,9 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+
 
 
 const Login = () => {
@@ -19,7 +19,7 @@ const Login = () => {
     const [password, setpassword] = useState(null)
     
     return (
-        <div>
+        <div className="main">
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
                 <div className="paper">
