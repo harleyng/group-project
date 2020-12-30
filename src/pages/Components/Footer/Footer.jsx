@@ -12,17 +12,17 @@ export default class Footer extends Component {
                 <div className="socialContact">
                     <div className="container">
                         <div className="row">
-                        <div className="col-3">
-                        <div className="col-1">
-                            <div className="socialLogo" ><a href="#"><img className="Logo" src={Logo} alt="logo"/></a></div>
-                        </div>
-                        <div className="col-6">
-                                <div className="row pl-3 pt-2">
-                                <div className="footerTitle"><span>TICKETLAND VIETNAM</span></div>
-                                <div className="footerTitle-2"><span> © 2020 TICKETLAND Cineplex</span></div>
+                            <div className="col-3" id="footerTitle">
+                                <div className="row">
+                                    <div className="col-3">
+                                        <div className="socialLogo" ><a href="#"><img className="Logo" src={Logo} alt="logo"/></a></div>
+                                    </div>
+                                        <div className="col-6">
+                                                <div className="footerTitle"><span>TICKETLAND VIETNAM</span></div>
+                                                <div className="footerTitle-2"><span> © 2020 TICKETLAND Cineplex</span></div>
+                                        </div>
+                                </div>
                             </div>
-                        </div>
-                        </div>
 
                         <div className="col-3">
                             <div className="footerTitle"><span>ABOUT US</span></div>
@@ -36,14 +36,13 @@ export default class Footer extends Component {
                         </div>
 
                         <div className="col-3">
-                            <div className="footerTitle"><span>ABOUT US</span></div>
+                            <div className="footerTitle"><span>CUSTOMER SERVICE</span></div>
                             <div class="col-6">
                                     <ul class="list-footer">
-                                        <li><a href="#" target="_blank" rel="noreferrer">CUSTOMER SERVICE</a></li>
-                                        <li><a href="#" target="_blank" rel="noreferrer">HOTLINE : 086 933393</a></li>
-                                        <li><a href="#" target="_blank" rel="noreferrer">EMAIL SUPPORT: ticketland@usth.vn</a></li>
-                                        <li><a href="#" target="_blank" rel="noreferrer">ADDRESS : 58 Dao Tan, Ba Dinh, Ha Noi</a></li>
-                                        <li><a href="#" target="_blank" rel="noreferrer">WORKING HOURS : 8 A.M - 6 P.M  </a></li>
+                                        <li><a href="#" target="_blank" rel="noreferrer">HOTLINE : <span className="list-footer-info">086 933393</span></a></li>
+                                        <li><a href="#" target="_blank" rel="noreferrer">EMAIL SUPPORT: <span className="list-footer-info">ticketland@usth.vn</span></a></li>
+                                        <li><a href="#" target="_blank" rel="noreferrer">ADDRESS : <span className="list-footer-info">58 Dao Tan, Ba Dinh, Ha Noi</span></a></li>
+                                        <li><a href="#" target="_blank" rel="noreferrer">WORKING HOURS : <span className="list-footer-info">8 A.M - 6 P.M </span></a></li>
                                     </ul>
                             </div>
                         </div>
