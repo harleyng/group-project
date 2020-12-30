@@ -38,10 +38,10 @@ const Footer = () => {
                             <div className="footerTitle"><span>CUSTOMER SERVICE</span></div>
                             <div class="col-6">
                                     <ul class="list-footer">
-                                        <li><a href="#" target="_blank" rel="noreferrer">HOTLINE : <span className="list-footer-info">086 933393</span></a></li>
-                                        <li><a href="#" target="_blank" rel="noreferrer">EMAIL SUPPORT: <span className="list-footer-info">ticketland@usth.vn</span></a></li>
-                                        <li><a href="#" target="_blank" rel="noreferrer">ADDRESS : <span className="list-footer-info">58 Dao Tan, Ba Dinh, Ha Noi</span></a></li>
-                                        <li><a href="#" target="_blank" rel="noreferrer">WORKING HOURS : <span className="list-footer-info">8 A.M - 6 P.M </span></a></li>
+                                        <li><p>HOTLINE : <span className="list-footer-info">086 933393</span></p></li>
+                                        <li><p>EMAIL SUPPORT: <span className="list-footer-info">ticketland@usth.vn</span></p></li>
+                                        <li><p>ADDRESS : <span className="list-footer-info">58 Dao Tan, Ba Dinh, Ha Noi</span></p></li>
+                                        <li><p>WORKING HOURS : <span className="list-footer-info">8 A.M - 6 P.M </span></p></li>
                                     </ul>
                             </div>
                         </div>
