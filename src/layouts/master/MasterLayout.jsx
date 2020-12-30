@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import NavBar from '../../pages/Components/NavBar/NavBar';
-import Footer from '../../pages/Components/Footer/Footer'
+import Header from '../../pages/Components/layout/Header';
+import Footer from '../../pages/Components/layout/Footer'
 
 export default class MasterLayout extends Component {
     render() {
         return (
             <div>
-                <NavBar/>
+                <Header/>
                 {this.props.children}
                 <Footer/>
             </div>

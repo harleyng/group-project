@@ -4,14 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import MasterLayout from './layouts/master/MasterLayout'
 import Register from './pages/Register'
 import Login from './pages/Login';
-import Footer from './pages/Components/Footer/Footer'
-import NavBar from './pages/Components/NavBar/NavBar';
-
+import './assets/css/base.scss'
 function App() {
   return (
     <div className="App">
       <MasterLayout>
-        <Login></Login>
+        <Login />
       </MasterLayout>
     </div>
   );

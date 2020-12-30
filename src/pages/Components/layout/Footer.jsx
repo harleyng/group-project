@@ -4,11 +4,10 @@ import instagramLogo from '../../../assets/img/insta.png'
 import youtubeLogo from '../../../assets/img/youtube.png'
 import githubLogo from '../../../assets/img/github.png'
 import Logo from '../../../assets/img/ticketland-logo.png'
-import "./Footer.css"
-export default class Footer extends Component {
-    render() {
-        return (
-            <div className="footer">
+
+const Footer = () => {
+    return (
+        <div className="footer">
                 <div className="socialContact">
                     <div className="container">
                         <div className="row">
@@ -60,6 +59,8 @@ export default class Footer extends Component {
                     </div>
                 </div>
             </div>
-        )
-    }
+    )
 }
+
+export default Footer
+
