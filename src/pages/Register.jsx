@@ -111,7 +111,7 @@ const Register = () => {
       if (formData[key] === "") {
         seterrors((prevData) => ({
           ...prevData,
-          [key]: key + " can't be blank"
+          [key]: key + " Can't be blank"
         }))
         setformValidated((prevData) => ({
           ...prevData,
@@ -154,7 +154,7 @@ const Register = () => {
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
           <div className="paper">
-            <Typography component="h1" variant="h5">Đăng Ký</Typography>
+            <Typography component="h1" variant="h5">Register</Typography>
           </div>
             <form action="">
               <Grid container spacing={2}>
@@ -270,7 +270,7 @@ const Register = () => {
                 <Grid item xs={12}>
                   <FormControlLabel 
                     control={<Checkbox value="allowExtraEmails" color="primary" />} 
-                    label="Receive newest notifications and discount"/>
+                    label="Receive Newest Notifications And Discount"/>
                 </Grid>
               </Grid>
               

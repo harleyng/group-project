@@ -2,19 +2,15 @@
 /////////////////////////// HEADER ///////////////////////////
 .header{
   background: black;
+  padding: 30px;
   .navTitle {
-    padding: 10px;
     color: white;
     font-family: 'Oxygen', sans-serif;
     font-style: 'normal';
-    font-size: 1rem;
+    font-size: 1.2rem;
     letter-spacing: 0.3em;
   }
-  
-  .list-inline{
-    padding: 10px;
-  }
-  
+
   .search-icon{
     background:white;
     width: 50px;
@@ -24,17 +20,20 @@
   li {
     display: inline;
   }
-  
-  a {
+  .menu-item{
     padding: 8px;
     color: white;
     font-family: 'Oxygen', sans-serif;
     font-style: 'normal';
     font-size: 0.7rem;
   }
+  a {
+    color: white;
+    font-family: 'Oxygen', sans-serif;
+    font-style: 'normal';
+  }
   
   .navSignin{
-    padding: 10px;
     color: white;
     font-family: 'Oxygen', sans-serif;
     font-style: 'normal';
@@ -49,9 +48,8 @@
     right: 100px;
   }
   .socialContact {
-    padding: 20px 0;
+    padding: 50px 0;
     border-top: solid #000000 2px;
-    border-bottom: solid #3c5e2c 2px;
   }
   .col-3 {
     max-width: 100%;
@@ -105,5 +103,38 @@
   .Logo{
     width: 100px;
     height: 40px;
+  }
+}
+
+/////////////////////////// LOGIN ///////////////////////////
+.LoginContainer{
+  background: url('../img/netflix-background-9.jpg');
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.45281862745098034) 8%, rgba(0,0,0,0.49763655462184875) 17%, rgba(0,0,0,0.8113620448179272) 58%, rgba(0,0,0,1) 100%);
+  }
+  
+  .LoginContent{
+    background: white;
+    font-family: 'Oxygen', sans-serif;
+    font-style: normal;
+    font-size: 1rem;
+    padding: 60px 20px;
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    margin:auto;
+    border-radius: 12px;
+  }
+  .sign-in{
+    text-align: center;
   }
 }

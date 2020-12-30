@@ -5,11 +5,18 @@ import MasterLayout from './layouts/master/MasterLayout'
 import Register from './pages/Register'
 import Login from './pages/Login';
 import './assets/css/base.scss'
+import {BrowserRouter,Switch,Route} from 'react-router-dom';
+
 function App() {
   return (
     <div className="App">
       <MasterLayout>
-        <Login />
+        <BrowserRouter> 
+            <Switch>
+              <Route exact path="/login" component={Login}/>
+              <Route exact path="/register" component={Register}/>
+            </Switch>
+        </BrowserRouter>
       </MasterLayout>
     </div>
   );

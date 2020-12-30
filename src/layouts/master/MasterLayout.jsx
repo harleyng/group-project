@@ -7,9 +7,13 @@ export default class MasterLayout extends Component {
         return (
             <div>
                 <Header/>
-                {this.props.children}
+                <div style={{height:"100vh"}}>
+                    {this.props.children}
+                </div>
                 <Footer/>
             </div>
         )
     }
 }
+
+
