@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Header from '../../pages/Components/layout/Header';
-import Footer from '../../pages/Components/layout/Footer'
+import Header from '../../components/layouts/Header';
+import Footer from '../../components/layouts/Footer'
 
 export default class MasterLayout extends Component {
     render() {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import facebookLogo from '../../../assets/img/facebook.png'
-import instagramLogo from '../../../assets/img/insta.png'
-import youtubeLogo from '../../../assets/img/youtube.png'
-import githubLogo from '../../../assets/img/github.png'
-import Logo from '../../../assets/img/ticketland-logo.png'
+import facebookLogo from '../../assets/img/facebook.png'
+import instagramLogo from '../../assets/img/insta.png'
+import youtubeLogo from '../../assets/img/youtube.png'
+import githubLogo from '../../assets/img/github.png'
+import Logo from '../../assets/img/ticketland-logo.png'
 
 const Footer = () => {
     return (
