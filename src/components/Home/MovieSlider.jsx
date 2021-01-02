@@ -7,7 +7,7 @@ import $ from 'jquery';
 import { IconContext } from "react-icons";
 import { BsChevronDoubleDown } from 'react-icons/bs'
 
-import bg from '../assets/img/movie-slider-item-background.jpg'
+import bg from '../../assets/img/movie-slider-item-background.jpg'
 import MovieSliderItem from './MovieSliderItem'
 
 const MovieSlider = () => {
@@ -82,7 +82,6 @@ const MovieSlider = () => {
   const sectionNavigation = () => {
     let booking = $('#booking').offset().top;
     $('html, body').scrollTop(booking);
-    console.log(booking)
   }
   return (
     <div className="movie-slider">
