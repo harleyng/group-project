@@ -2,12 +2,14 @@ import React from 'react'
 import { yellow } from '@material-ui/core/colors';
 
 // Material-UI
-import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Rating from '@material-ui/lab/Rating';
 import { Star } from '@material-ui/icons';
 
 // React Icons
+import { IconContext } from "react-icons";
+import { RiArrowDownSLine } from 'react-icons/ri'
 import { BiCalendar } from 'react-icons/bi'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 
@@ -18,6 +20,7 @@ const MovieSliderItem = props => {
       color: yellow.A200, //#ffff00
     }
   })(Rating);
+
   return (
     <div className="item-container"
         style={{
@@ -69,26 +72,30 @@ const MovieSliderItem = props => {
         </div>
         <div className="detail">
           <table>
-            <tr>
-              <td className="director yellow-text">Director:</td>
-              <td className="capitalize">{props.director}</td>
-            </tr>
-            <tr>
-              <td className="stars yellow-text">Stars:</td>
-              <td className="capitalize">
-                {props.stars.map((value, index) => {
-                  if (index + 1 !== props.stars.length) {
-                    return value + ", "
-                  } else {
-                    return value
-                  }
-                })}  
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td className="director yellow-text">Director:</td>
+                <td className="capitalize">{props.director}</td>
+              </tr>
+              <tr>
+                <td className="stars yellow-text">Stars:</td>
+                <td className="capitalize">
+                  {props.stars.map((value, index) => {
+                    if (index + 1 !== props.stars.length) {
+                      return value + ", "
+                    } else {
+                      return value
+                    }
+                  })}  
+                </td>
+              </tr>
+            </tbody>
           </table>
           <p>{props.desc}</p>
         </div>
       </div>
+      
+      
     </div>
   )
 }

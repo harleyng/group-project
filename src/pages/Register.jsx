@@ -3,15 +3,12 @@ import { isEmail, isEmpty, isLength, isContainWhiteSpace, isPasswordMatch, isPho
 import Swal from 'sweetalert2'
 
 // Material UI
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 
@@ -28,10 +25,7 @@ const Register = () => {
     phone:false
   };
   const [formValidated, setformValidated] = useState(initialformValidated)
-  const [loading, setloading] = useState(false)
-  const [day, setday] = useState(null)
-  const [month, setmonth] = useState(null)
-  const [year, setyear] = useState(null)
+  // const [loading, setloading] = useState(false)
 
   const handleInputChange = (event) => {
       const { name, value } = event.target;
@@ -142,13 +136,13 @@ const Register = () => {
       })
   }
   
-  const getOptions = (start, end) => {
-    const options = [];
-    for(let i = start; i <= end; i++) {
-      options.push(<option key={i}>{i}</option>)
-    }
-    return options;
-  }
+  // const getOptions = (start, end) => {
+  //   const options = [];
+  //   for(let i = start; i <= end; i++) {
+  //     options.push(<option key={i}>{i}</option>)
+  //   }
+  //   return options;
+  // }
 
   return (
     <Container component="main" maxWidth="xs">

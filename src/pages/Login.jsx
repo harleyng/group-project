@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 
 // Material UI
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -15,8 +14,8 @@ import Container from "@material-ui/core/Container";
 
 
 const Login = () => {
-    const [userName, setuserName] = useState(null)
-    const [password, setpassword] = useState(null)
+    // const [userName, setuserName] = useState(null)
+    // const [password, setpassword] = useState(null)
     
     return (
         <div className="LoginContainer">

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import facebookLogo from '../../assets/img/facebook.png'
 import instagramLogo from '../../assets/img/insta.png'
 import youtubeLogo from '../../assets/img/youtube.png'
@@ -25,8 +25,8 @@ const Footer = () => {
 
                         <div className="col-3">
                             <div className="footerTitle"><span>ABOUT US</span></div>
-                            <div class="col-6">
-                                    <ul class="list-footer">
+                            <div className="col-6">
+                                    <ul className="list-footer">
                                         <li><a href="#" target="_blank" rel="noreferrer">ABOUT US</a></li>
                                         <li><a href="#" target="_blank" rel="noreferrer">GIFT CARD</a></li>
                                         <li><a href="#" target="_blank" rel="noreferrer">CAREER</a></li>
@@ -36,8 +36,8 @@ const Footer = () => {
 
                         <div className="col-3">
                             <div className="footerTitle"><span>CUSTOMER SERVICE</span></div>
-                            <div class="col-6">
-                                    <ul class="list-footer">
+                            <div className="col-6">
+                                    <ul className="list-footer">
                                         <li><p>HOTLINE : <span className="list-footer-info">086 933393</span></p></li>
                                         <li><p>EMAIL SUPPORT: <span className="list-footer-info">ticketland@usth.vn</span></p></li>
                                         <li><p>ADDRESS : <span className="list-footer-info">58 Dao Tan, Ba Dinh, Ha Noi</span></p></li>

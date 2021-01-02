@@ -1,19 +1,19 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Header from '../../components/layouts/Header';
 import Footer from '../../components/layouts/Footer'
 
-export default class MasterLayout extends Component {
-    render() {
-        return (
-            <div>
-                <Header/>
-                <div style={{height:"100vh"}}>
-                    {this.props.children}
-                </div>
-                <Footer/>
+const MasterLayout = props => {
+    return (
+        <div>
+            <Header/>
+            <div style={{minHeight:"100vh"}}>
+                {props.children}
             </div>
-        )
-    }
+            <Footer/>
+        </div>
+    )
 }
+
+export default MasterLayout
 
 
