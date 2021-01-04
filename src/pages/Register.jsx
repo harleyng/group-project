@@ -145,137 +145,140 @@ const Register = () => {
   // }
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline/>
-          <div className="paper">
-            <Typography component="h1" variant="h5">Register</Typography>
-          </div>
-            <form action="">
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField  error={formValidated.firstname}
-                              helperText={errors.firstname}
-                              autoComplete="firstname" 
-                              name="firstname" 
-                              variant="outlined" 
-                              required 
-                              fullWidth 
-                              id="firstname" 
-                              label="First Name" 
-                              autoFocus 
-                              onChange={handleInputChange} />
-                </Grid>
+    <div className="register-container">
+      <Container component="main" maxWidth="xs" className="register-content">
+        <CssBaseline/>
+            <div className="paper">
+              <Typography component="h1" variant="h5" className="register-title mb-3">Register</Typography>
+            </div>
+              <form action="">
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={6}>
+                    <TextField  error={formValidated.firstname}
+                                helperText={errors.firstname}
+                                autoComplete="firstname" 
+                                name="firstname" 
+                                variant="outlined" 
+                                required 
+                                fullWidth 
+                                id="firstname" 
+                                label="First Name" 
+                                autoFocus 
+                                onChange={handleInputChange} />
+                  </Grid>
 
-                <Grid item xs={12} sm={6}>
-                  <TextField  error={formValidated.lastname}
-                              helperText={errors.lastname}
-                              autoComplete="lastname" 
-                              name="lastname" 
-                              variant="outlined" 
-                              required 
-                              fullWidth 
-                              id="lastname" 
-                              label="Last Name" 
-                              autoFocus
-                              onChange={handleInputChange}/>
-                </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField  error={formValidated.lastname}
+                                helperText={errors.lastname}
+                                autoComplete="lastname" 
+                                name="lastname" 
+                                variant="outlined" 
+                                required 
+                                fullWidth 
+                                id="lastname" 
+                                label="Last Name" 
+                                autoFocus
+                                onChange={handleInputChange}/>
+                  </Grid>
 
-                <Grid item xs={12}>
-                  <TextField  error={formValidated.username}
-                              helperText={errors.username}
-                              autoComplete="username" 
-                              name="username" 
-                              variant="outlined" 
-                              required fullWidth 
-                              id="username" 
-                              label="Username" 
-                              autoFocus
-                              onChange={handleInputChange} />
-                </Grid>
+                  <Grid item xs={12}>
+                    <TextField  error={formValidated.username}
+                                helperText={errors.username}
+                                autoComplete="username" 
+                                name="username" 
+                                variant="outlined" 
+                                required fullWidth 
+                                id="username" 
+                                label="Username" 
+                                autoFocus
+                                onChange={handleInputChange} />
+                  </Grid>
 
-                <Grid item xs={12}>
-                  <TextField  id="DOB"
-                              label="DOB"
-                              name="DOB"
-                              type="date"
-                              required fullWidth 
-                              defaultValue="2020-01-01"
-                              onChange={handleInputChange} />
-                </Grid>
+                  <Grid item xs={12}>
+                    <TextField  id="DOB"
+                                label="DOB"
+                                name="DOB"
+                                type="date"
+                                required fullWidth 
+                                defaultValue="2020-01-01"
+                                onChange={handleInputChange} />
+                  </Grid>
 
-                <Grid item xs={12} sm={6}>
-                  <TextField  error={formValidated.password}
-                              helperText={errors.password}
-                              autoComplete="password" 
-                              name="password" 
-                              type="password" 
-                              variant="outlined" 
-                              required 
-                              fullWidth 
-                              id="password" 
-                              label="Password" 
-                              autoFocus
-                              onChange={handleInputChange} />
-                </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField  error={formValidated.password}
+                                helperText={errors.password}
+                                autoComplete="password" 
+                                name="password" 
+                                type="password" 
+                                variant="outlined" 
+                                required 
+                                fullWidth 
+                                id="password" 
+                                label="Password" 
+                                autoFocus
+                                onChange={handleInputChange} />
+                  </Grid>
 
-                <Grid item xs={12} sm={6}>
-                  <TextField  error={formValidated.repassword}
-                              helperText={errors.repassword}
-                              autoComplete="repassword" 
-                              name="repassword" 
-                              type="password" 
-                              variant="outlined" 
-                              required 
-                              fullWidth 
-                              id="repassword" 
-                              label="Re-type Password" 
-                              autoFocus
-                              onChange={handleInputChange} />
-                </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField  error={formValidated.repassword}
+                                helperText={errors.repassword}
+                                autoComplete="repassword" 
+                                name="repassword" 
+                                type="password" 
+                                variant="outlined" 
+                                required 
+                                fullWidth 
+                                id="repassword" 
+                                label="Re-type Password" 
+                                autoFocus
+                                onChange={handleInputChange} />
+                  </Grid>
 
-                <Grid item xs={12} sm={6}>
-                  <TextField  error={formValidated.email}
-                              helperText={errors.email}
-                              autoComplete="email" 
-                              name="email" 
-                              variant="outlined" 
-                              required 
-                              fullWidth 
-                              id="email" 
-                              label="Email" 
-                              autoFocus
-                              onChange={handleInputChange} />
-                </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField  error={formValidated.email}
+                                helperText={errors.email}
+                                autoComplete="email" 
+                                name="email" 
+                                variant="outlined" 
+                                required 
+                                fullWidth 
+                                id="email" 
+                                label="Email" 
+                                autoFocus
+                                onChange={handleInputChange} />
+                  </Grid>
 
-                <Grid item xs={12} sm={6}>
-                  <TextField  error={formValidated.phone}
-                              helperText={errors.phone}
-                              autoComplete="phone" 
-                              name="phone"
-                              variant="outlined" 
-                              required 
-                              fullWidth 
-                              id="phone" 
-                              label="Phone Number" 
-                              autoFocus
-                              onChange={handleInputChange} />
-                </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField  error={formValidated.phone}
+                                helperText={errors.phone}
+                                autoComplete="phone" 
+                                name="phone"
+                                variant="outlined" 
+                                required 
+                                fullWidth 
+                                id="phone" 
+                                label="Phone Number" 
+                                autoFocus
+                                onChange={handleInputChange} />
+                  </Grid>
 
-                <Grid item xs={12}>
-                  <FormControlLabel 
-                    control={<Checkbox value="allowExtraEmails" color="primary" />} 
-                    label="Receive Newest Notifications And Discount"/>
+                  <Grid item xs={12}>
+                    <FormControlLabel 
+                      className="receive-noti"
+                      control={<Checkbox value="allowExtraEmails" color="primary" />} 
+                      label="Receive Newest Notifications And Discount"/>
+                  </Grid>
                 </Grid>
-              </Grid>
-              
-                <Button type="submit" 
-                        fullWidth 
-                        variant="contained" 
-                        color="primary" 
-                        className="submit"
-                        onClick={register}>Đăng ký</Button> 
-            </form>
-    </Container>
+                
+                  <Button type="submit" 
+                          fullWidth 
+                          variant="contained" 
+                          color="primary" 
+                          className="submit"
+                          onClick={register}>Đăng ký</Button> 
+              </form>
+      </Container>
+    </div>
   )
 }
 

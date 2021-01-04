@@ -1,9 +1,7 @@
 import React from 'react'
 import OwlCarousel from 'react-owl-carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
 
-import MovieBooking from './MovieBooking'
+import MovieBooking from './movie-booking/MovieBooking'
 import TimeBooking from './TimeBooking';
 import CinemaBooking from './CinemaBooking';
 
@@ -12,8 +10,10 @@ const BookingSlider = () => {
     <div className="booking-slider">
       <OwlCarousel
         // Basic Settings 
+        id="booking-slider"
         className="owl-theme"
         items={1}
+        dots
         // dotsContainer='#carousel-custom-dots'
         loop
         margin={10}
@@ -26,7 +26,7 @@ const BookingSlider = () => {
         <CinemaBooking/>
       </OwlCarousel>
       
-      <div className="dots">
+      {/* <div className="dots">
         <ul id='carousel-custom-dots' className='custom-owl-dots'>
           <button className='owl-dot'></button>
           <button className='owl-dot'></button>
@@ -34,7 +34,7 @@ const BookingSlider = () => {
           <button className='owl-dot'></button>
           <button className='owl-dot'></button>
         </ul>
-      </div>
+      </div> */}
     </div>
   )
 }

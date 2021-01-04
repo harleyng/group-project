@@ -8,8 +8,6 @@ import Rating from '@material-ui/lab/Rating';
 import { Star } from '@material-ui/icons';
 
 // React Icons
-import { IconContext } from "react-icons";
-import { RiArrowDownSLine } from 'react-icons/ri'
 import { BiCalendar } from 'react-icons/bi'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 
@@ -24,7 +22,7 @@ const MovieSliderItem = props => {
   return (
     <div className="item-container"
         style={{
-          backgroundImage: `url(${props.bg})`,
+          backgroundImage: `url(${props.img})`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
         }}>

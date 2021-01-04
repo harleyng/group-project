@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import OwlCarousel from 'react-owl-carousel';
-import $ from 'jquery';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
 
-import { IconContext } from "react-icons";
-import { BsChevronDoubleDown } from 'react-icons/bs'
+import OnShowingMovieItem from './OnShowingMovieItem'
+import img from '../../../../assets/img/movie-slider-item-background.jpg'
 
-import img from '../../assets/img/movie-slider-item-background.jpg'
-import MovieSliderItem from './MovieSliderItem'
-
-const MovieSlider = () => {
+const OnShowingMovie = () => {
   const movieList = [
     {
       id: 1,
@@ -77,34 +75,25 @@ const MovieSlider = () => {
     },
   ]
 
-  const sectionNavigation = () => {
-    let booking = $('#booking').offset().top;
-    $('html, body').scrollTop(booking);
-  }
   return (
-    <div className="movie-slider">
+    <div>
+      <h1 className="slider-title">onshowing</h1>
       <OwlCarousel
         // Basic Settings 
-        id="movie-slider"
+        id="on-showing-movie-slider"
         className="owl-theme"
-        items={1}
-        dotsContainer='#carousel-custom-dots'
+        items={4}
+        nav
+        // dotsContainer='#carousel-custom-dots'
         loop
         margin={10}
-
-        // Autoplay
-        autoplay
-        autoplayHoverPause
-
-        // Animation
-        animateOut="fadeOut"
         >
         {movieList.map(item => (
           <React.Fragment key = {item.id}>
-            <MovieSliderItem 
+            <OnShowingMovieItem 
               id = {item.id}
               title = {item.title}
-              img = {item.img}
+              bg = {item.bg}
               genre = {item.genre}
               releaseDate = {item.releaseDate}
               duration = {item.duration}
@@ -117,22 +106,8 @@ const MovieSlider = () => {
           </React.Fragment>
         ))}
       </OwlCarousel>
-      <div className="dots">
-        <ul id='carousel-custom-dots' className='custom-owl-dots'>
-          <button className='owl-dot'></button>
-          <button className='owl-dot'></button>
-          <button className='owl-dot'></button>
-          <button className='owl-dot'></button>
-          <button className='owl-dot'></button>
-        </ul>
-      </div>
-      <a className="section-navigator" onClick={sectionNavigation}>
-        <IconContext.Provider value={{ size: '3em', className: "puzzle" }}>
-            <BsChevronDoubleDown />
-        </IconContext.Provider>
-      </a>
     </div>
   )
 }
 
-export default MovieSlider
+export default OnShowingMovie
