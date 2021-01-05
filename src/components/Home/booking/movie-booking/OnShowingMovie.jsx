@@ -58,19 +58,6 @@ const OnShowingMovie = () => {
       stars: ['Gal Gadot', 'Chris Pine'],
       desc: 'When a pilot crashes and tells of conflict in the outside world, Diana, an Amazonian warrior in training, leaves home to fight a war, discovering her full powers and true destiny.'
     },
-    {
-      id: 5,
-      title: 'wonder woman5',
-      img: img,
-      genre: ['action', 'adventure'],
-      releaseDate: '2017',
-      duration: 141,
-      ratingIMDB: 7.4,
-      ageRating: 'PG-13',
-      director: 'Patty Jenkins',
-      stars: ['Gal Gadot', 'Chris Pine'],
-      desc: 'When a pilot crashes and tells of conflict in the outside world, Diana, an Amazonian warrior in training, leaves home to fight a war, discovering her full powers and true destiny.'
-    },
   ]
   const settings = {
     // Basic Settings 

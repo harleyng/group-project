@@ -142,6 +142,7 @@
   }
   #booking {
     padding: 0 $paddingX-large;
+    height: 1000px;
     .booking-slider {
       $padding-top-booking-slider: 300px;
       padding-top: $padding-top-booking-slider;
@@ -208,5 +209,12 @@
         }
       }
     }
+  }
+
+  #date-picker-dialog{
+    color: white;
+  }
+  #time-picker{
+    color: white;
   }
 }

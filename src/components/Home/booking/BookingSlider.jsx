@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import $ from 'jquery'
 
 import MovieBooking from './movie-booking/MovieBooking'
-import TimeBooking from './TimeBooking';
+import TimeBooking from './time-booking/TimeBooking';
 import CinemaBooking from './CinemaBooking';
 
 const BookingSlider = () => {

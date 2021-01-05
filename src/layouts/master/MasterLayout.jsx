@@ -6,7 +6,7 @@ const MasterLayout = props => {
     return (
         <div>
             <Header/>
-            <div style={{minHeight:"100vh"}}>
+            <div style={{minHeight:"190vh"}}>
                 {props.children}
             </div>
             <Footer/>
