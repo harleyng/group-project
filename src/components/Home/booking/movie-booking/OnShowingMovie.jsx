@@ -61,10 +61,11 @@ const OnShowingMovie = () => {
   ]
   const settings = {
     // Basic Settings 
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    draggable: false
   };
   return (
     <div id ="onshowing-movie" className="movie-slider">
