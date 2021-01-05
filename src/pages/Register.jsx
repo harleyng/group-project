@@ -275,7 +275,7 @@ const Register = () => {
                           variant="contained" 
                           color="primary" 
                           className="submit"
-                          onClick={register}>Đăng ký</Button> 
+                          onClick={register}>Register</Button> 
               </form>
       </Container>
     </div>
