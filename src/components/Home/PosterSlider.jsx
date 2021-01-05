@@ -86,6 +86,7 @@ const PosterSlider = () => {
     // Basic Settings 
     dots: true,
     infinite: true,
+    draggable: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,

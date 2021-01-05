@@ -147,7 +147,7 @@
       padding-top: $padding-top-booking-slider;
       #booking-slider-custom-dots {
         top: -$padding-top-booking-slider + 150px;
-        bottom: $padding-top-booking-slider x 2;
+        bottom: $padding-top-booking-slider * 2;
         li {
           width: 30%;
           padding: 30px 0;
