@@ -5,10 +5,10 @@ import searchIcon from '../../assets/img/search-solid.svg'
 const Header = () => {
     const handleScroll = () => {
         if($(window).scrollTop() > 50) {
-            $(".header").addClass("active");
+            $(".header").addClass("header-active");
         } else {
             //remove the background property so it comes transparent again (defined in your css)
-           $(".header").removeClass("active");
+           $(".header").removeClass("header-active");
         }
     }
 

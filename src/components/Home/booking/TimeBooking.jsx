@@ -2,7 +2,7 @@ import React from 'react'
 
 const TimeBooking = () => {
   return (
-    <div>
+    <div className="booking-slider-item">
       2
     </div>
   )

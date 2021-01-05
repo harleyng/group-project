@@ -3,7 +3,7 @@ import OnShowingMovie from './OnShowingMovie'
 
 const MovieBooking = () => {
   return (
-    <div>
+    <div className="booking-slider-item">
       <OnShowingMovie/>
     </div>
   )

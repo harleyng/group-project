@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import OwlCarousel from 'react-owl-carousel';
+import Slider from "react-slick";
 import $ from 'jquery';
 
 import { IconContext } from "react-icons";
 import { BsChevronDoubleDown } from 'react-icons/bs'
 
-import img from '../../assets/img/movie-slider-item-background.jpg'
-import MovieSliderItem from './MovieSliderItem'
+import img from '../../assets/img/poster-slider-background.jpg'
+import PosterSliderItem from './PosterSliderItem'
 
-const MovieSlider = () => {
+const PosterSlider = () => {
   const movieList = [
     {
       id: 1,
@@ -81,50 +81,52 @@ const MovieSlider = () => {
     let booking = $('#booking').offset().top;
     $('html, body').scrollTop(booking);
   }
+
+  const settings = {
+    // Basic Settings 
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+
+    // Autoplay
+    autoplay: true,
+    autoplaySpeed: 5000,
+    pauseOnHover: true,
+
+    appendDots: dots => (
+      <ul id='poster-slider-custom-dots'>
+        {dots}
+      </ul>
+    ),
+    customPaging: i => (
+      <li className="dot"></li>
+    )
+  };
+
   return (
-    <div className="movie-slider">
-      <OwlCarousel
-        // Basic Settings 
-        id="movie-slider"
-        className="owl-theme"
-        items={1}
-        dotsContainer='#carousel-custom-dots'
-        loop
-        margin={10}
-
-        // Autoplay
-        autoplay
-        autoplayHoverPause
-
-        // Animation
-        animateOut="fadeOut"
-        >
-        {movieList.map(item => (
-          <React.Fragment key = {item.id}>
-            <MovieSliderItem 
-              id = {item.id}
-              title = {item.title}
-              img = {item.img}
-              genre = {item.genre}
-              releaseDate = {item.releaseDate}
-              duration = {item.duration}
-              ratingIMDB = {item.ratingIMDB}
-              ageRating = {item.ageRating}
-              director = {item.director}
-              stars = {item.stars}
-              desc = {item.desc}
-            />
-          </React.Fragment>
-        ))}
-      </OwlCarousel>
-      <div className="dots">
-        <ul id='carousel-custom-dots' className='custom-owl-dots'>
-          <button className='owl-dot'></button>
-          <button className='owl-dot'></button>
-          <button className='owl-dot'></button>
-          <button className='owl-dot'></button>
-          <button className='owl-dot'></button>
-        </ul>
+    <div className="poster-slider-container">
+      <div id="poster-slider">
+        <Slider {...settings}> 
+          {movieList.map(item => (
+            <React.Fragment key = {item.id}>
+              <PosterSliderItem 
+                id = {item.id}
+                title = {item.title}
+                img = {item.img}
+                genre = {item.genre}
+                releaseDate = {item.releaseDate}
+                duration = {item.duration}
+                ratingIMDB = {item.ratingIMDB}
+                ageRating = {item.ageRating}
+                director = {item.director}
+                stars = {item.stars}
+                desc = {item.desc}
+              />
+            </React.Fragment>
+          ))}
+        </Slider>
       </div>
       <a className="section-navigator" onClick={sectionNavigation}>
         <IconContext.Provider value={{ size: '3em', className: "puzzle" }}>
@@ -135,4 +137,4 @@ const MovieSlider = () => {
   )
 }
 
-export default MovieSlider
+export default PosterSlider

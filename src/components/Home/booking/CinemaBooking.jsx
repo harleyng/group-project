@@ -2,7 +2,7 @@ import React from 'react'
 
 const CinemaBooking = () => {
   return (
-    <div>
+    <div className="booking-slider-item">
       3
     </div>
   )

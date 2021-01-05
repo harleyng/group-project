@@ -1,12 +1,12 @@
 import React from 'react'
 
-import MovieSlider from '../components/Home/MovieSlider'
+import PosterSlider from '../components/Home/PosterSlider'
 import BookingSlider from '../components/Home/booking/BookingSlider'
 
 const Home = () => {
   return (
-    <div>
-      <MovieSlider/>
+    <div id="home-page">
+      <PosterSlider/>
       <div id="booking">
         <BookingSlider/>
       </div>

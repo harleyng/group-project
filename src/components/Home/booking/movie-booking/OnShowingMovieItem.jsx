@@ -9,15 +9,13 @@ const OnShowingMovieItem = props => {
       <div>
         <img src={props.img} alt={props.title}/>
       </div>
-      <div>
-        <h5>{props.title}</h5>
-        <div>
-          <span>
-            <IconContext.Provider value={{ className: "star-icon" }}>
-                <AiFillStar />
-            </IconContext.Provider>
-          </span>
-          {props.ratingIMDB}/10 IMDB
+      <div className="mt-3">
+        <h5 className="movie-title">{props.title}</h5>
+      <div className="movie-rating">
+          <IconContext.Provider value={{ className: "star-icon" }}>
+              <AiFillStar />
+          </IconContext.Provider>
+          <span className="ml-1">{props.ratingIMDB}/10 IMDB</span>
         </div>
       </div>
     </div>

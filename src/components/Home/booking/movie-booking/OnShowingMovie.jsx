@@ -1,10 +1,8 @@
 import React from 'react'
-import OwlCarousel from 'react-owl-carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
+import Slider from "react-slick";
 
 import OnShowingMovieItem from './OnShowingMovieItem'
-import img from '../../../../assets/img/movie-slider-item-background.jpg'
+import img from '../../../../assets/img/movie-slider-bg.jpg'
 
 const OnShowingMovie = () => {
   const movieList = [
@@ -74,26 +72,23 @@ const OnShowingMovie = () => {
       desc: 'When a pilot crashes and tells of conflict in the outside world, Diana, an Amazonian warrior in training, leaves home to fight a war, discovering her full powers and true destiny.'
     },
   ]
-
+  const settings = {
+    // Basic Settings 
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+  };
   return (
-    <div>
-      <h1 className="slider-title">onshowing</h1>
-      <OwlCarousel
-        // Basic Settings 
-        id="on-showing-movie-slider"
-        className="owl-theme"
-        items={4}
-        nav
-        // dotsContainer='#carousel-custom-dots'
-        loop
-        margin={10}
-        >
+    <div id ="onshowing-movie" className="movie-slider">
+      <h3 className="slider-title">onshowing</h3>
+      <Slider {...settings}> 
         {movieList.map(item => (
           <React.Fragment key = {item.id}>
             <OnShowingMovieItem 
               id = {item.id}
               title = {item.title}
-              bg = {item.bg}
+              img = {item.img}
               genre = {item.genre}
               releaseDate = {item.releaseDate}
               duration = {item.duration}
@@ -105,7 +100,7 @@ const OnShowingMovie = () => {
             />
           </React.Fragment>
         ))}
-      </OwlCarousel>
+      </Slider>
     </div>
   )
 }

@@ -12,7 +12,7 @@ import { BiCalendar } from 'react-icons/bi'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 
 
-const MovieSliderItem = props => {
+const PosterSliderItem = props => {
   const StyledRating = withStyles({
     iconFilled: {
       color: yellow.A200, //#ffff00
@@ -29,7 +29,7 @@ const MovieSliderItem = props => {
       <div className="item-content">
         <div className="overall">
           <h1 className="title uppercase">{props.title}</h1>
-          <div className="movie-info">
+          <div className="poster-info">
             <div className="genre capitalize">
               {props.genre.map((value, index) => {
                 if (index + 1 !== props.stars.length) {
@@ -48,7 +48,7 @@ const MovieSliderItem = props => {
               <span>{props.duration}</span>
             </div>
           </div>
-          <div className="movie-info">
+          <div className="poster-info">
             <div className="rating-imdb">
               <StyledRating
                 name="read-only"
@@ -98,4 +98,4 @@ const MovieSliderItem = props => {
   )
 }
 
-export default MovieSliderItem
+export default PosterSliderItem
