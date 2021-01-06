@@ -1,5 +1,4 @@
 import React from 'react'
-import MovieThumnail from '../components/Detail-Movie/MovieThumnail'
 import MovieInfo from '../components/Detail-Movie/MovieInfo'
 import AnotherMovie from '../components/Detail-Movie/AnotherMovie'
 const DetailMovie = () => {
