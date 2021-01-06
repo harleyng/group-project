@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Slider from "react-slick";
-import $ from 'jquery';
 
-import { IconContext } from "react-icons";
-import { BsChevronDoubleDown } from 'react-icons/bs'
+import UpCommingMovieItem from './UpCommingMovieItem'
 
-import img from '../../assets/img/poster-slider-background.jpg'
-import PosterSliderItem from './PosterSliderItem'
+import img from '../../../../assets/img/movie-slider-bg.jpg'
 
-const PosterSlider = () => {
+const UpCommingMovie = () => {
   const movieList = [
     {
       id: 1,
@@ -81,67 +78,39 @@ const PosterSlider = () => {
       desc: 'When a pilot crashes and tells of conflict in the outside world, Diana, an Amazonian warrior in training, leaves home to fight a war, discovering her full powers and true destiny.'
     },
   ]
-
-  const sectionNavigation = () => {
-    let booking = $('#booking').offset().top;
-    $('html, body').scrollTop(booking);
-  }
-
   const settings = {
     // Basic Settings 
-    dots: true,
-    infinite: true,
-    draggable: false,
+    infinite: false,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 4,
     slidesToScroll: 1,
-
-    // Autoplay
-    autoplay: true,
-    autoplaySpeed: 5000,
-    pauseOnHover: true,
-
-    appendDots: dots => (
-      <ul id='poster-slider-custom-dots'>
-        {dots}
-      </ul>
-    ),
-    customPaging: i => (
-      <li className="dot"></li>
-    )
+    draggable: false
   };
-
   return (
-    <div className="poster-slider-container">
-      <div id="poster-slider">
-        <Slider {...settings}> 
-          {movieList.map(item => (
-            <React.Fragment key = {item.id}>
-              <PosterSliderItem 
-                id = {item.id}
-                title = {item.title}
-                img = {item.img}
-                genre = {item.genre}
-                releaseDate = {item.releaseDate}
-                releaseYear = {item.releaseYear}
-                duration = {item.duration}
-                ratingIMDB = {item.ratingIMDB}
-                ageRating = {item.ageRating}
-                director = {item.director}
-                stars = {item.stars}
-                desc = {item.desc}
-              />
-            </React.Fragment>
-          ))}
-        </Slider>
-      </div>
-      <a className="section-navigator" onClick={sectionNavigation}>
-        <IconContext.Provider value={{ size: '3em', className: "puzzle" }}>
-            <BsChevronDoubleDown />
-        </IconContext.Provider>
-      </a>
+    <div id ="upcomming-movie" className="movie-slider">
+      <h3 className="slider-title">upcomming</h3>
+      <Slider {...settings}> 
+        {movieList.map(item => (
+          <React.Fragment key = {item.id}>
+            <UpCommingMovieItem 
+              id = {item.id}
+              title = {item.title}
+              img = {item.img}
+              genre = {item.genre}
+              releaseDate = {item.releaseDate}
+              releaseYear = {item.releaseYear}
+              duration = {item.duration}
+              ratingIMDB = {item.ratingIMDB}
+              ageRating = {item.ageRating}
+              director = {item.director}
+              stars = {item.stars}
+              desc = {item.desc}
+            />
+          </React.Fragment>
+        ))}
+      </Slider>
     </div>
   )
 }
 
-export default PosterSlider
+export default UpCommingMovie

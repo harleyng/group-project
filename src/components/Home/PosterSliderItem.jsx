@@ -41,7 +41,7 @@ const PosterSliderItem = props => {
             </div> 
             <div className="release-date">
               <span className="mr-2"><BiCalendar/></span>  
-              <span>{props.releaseDate}</span> 
+              <span>{props.releaseYear}</span> 
             </div>
             <div className="duration">
               <span className="mr-2"><AiOutlineClockCircle/></span>  

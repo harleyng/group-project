@@ -11,7 +11,8 @@ const OnShowingMovie = () => {
       title: 'wonder woman1',
       img: img,
       genre: ['action', 'adventure'],
-      releaseDate: '2017',
+      releaseDate: '23 Feburary',
+      releaseYear: '2017',
       duration: 141,
       ratingIMDB: 7.4,
       ageRating: 'PG-13',
@@ -24,7 +25,8 @@ const OnShowingMovie = () => {
       title: 'wonder woman2',
       img: img,
       genre: ['action', 'adventure'],
-      releaseDate: '2017',
+      releaseDate: '23 Feburary',
+      releaseYear: '2017',
       duration: 141,
       ratingIMDB: 7.4,
       ageRating: 'PG-13',
@@ -37,7 +39,8 @@ const OnShowingMovie = () => {
       title: 'wonder woman3',
       img: img,
       genre: ['action', 'adventure'],
-      releaseDate: '2017',
+      releaseDate: '23 Feburary',
+      releaseYear: '2017',
       duration: 141,
       ratingIMDB: 7.4,
       ageRating: 'PG-13',
@@ -50,7 +53,8 @@ const OnShowingMovie = () => {
       title: 'wonder woman4',
       img: img,
       genre: ['action', 'adventure'],
-      releaseDate: '2017',
+      releaseDate: '23 Feburary',
+      releaseYear: '2017',
       duration: 141,
       ratingIMDB: 7.4,
       ageRating: 'PG-13',
@@ -63,7 +67,8 @@ const OnShowingMovie = () => {
       title: 'wonder woman5',
       img: img,
       genre: ['action', 'adventure'],
-      releaseDate: '2017',
+      releaseDate: '23 Feburary',
+      releaseYear: '2017',
       duration: 141,
       ratingIMDB: 7.4,
       ageRating: 'PG-13',
@@ -92,6 +97,7 @@ const OnShowingMovie = () => {
               img = {item.img}
               genre = {item.genre}
               releaseDate = {item.releaseDate}
+              releaseYear = {item.releaseYear}
               duration = {item.duration}
               ratingIMDB = {item.ratingIMDB}
               ageRating = {item.ageRating}
