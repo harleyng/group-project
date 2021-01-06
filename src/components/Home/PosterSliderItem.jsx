@@ -45,7 +45,7 @@ const PosterSliderItem = props => {
             </div>
             <div className="duration">
               <span className="mr-2"><AiOutlineClockCircle/></span>  
-              <span>{props.duration}</span>
+              <span>{props.duration} Min</span>
             </div>
           </div>
           <div className="poster-info">
