@@ -142,7 +142,6 @@
   }
   #booking {
     padding: 0 $paddingX-large;
-    height: 1000px;
     .booking-slider {
       $padding-top-booking-slider: 300px;
       padding-top: $padding-top-booking-slider;
@@ -189,6 +188,9 @@
       }
       .slider-title, .movie-title {
         text-transform: uppercase;
+      }
+      #upcomming-movie {
+        margin-top: $regular-distance-between-block;
       }
       .movie-slider {
         .slick-arrow {
@@ -241,6 +243,9 @@
                 span {
                   vertical-align: middle;
                 }
+              }
+              .movie-released {
+                color: $text-secondary;
               }
             }
           }
