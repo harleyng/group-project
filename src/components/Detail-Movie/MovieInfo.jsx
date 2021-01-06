@@ -22,19 +22,21 @@ const MovieInfo = () => {
                             <h1>WONDER WOMAN</h1>
                             <p className="detail">When a pilot crashes and tells of conflict in the outside world, Diana, an Amazonian warrior in training, leaves home to fight a war, discovering her full powers and true destiny.</p>
 
-                            <div className="movieInfo row">
-                                <span className="rating">
-                                <IconContext.Provider value={{ className: "star-icon" }}>
-                                    <AiFillStar />
-                                    <AiFillStar />
-                                    <AiFillStar />
-                                    <AiFillStar />
-                                    <AiFillStar />
-                                </IconContext.Provider>
-                                </span>
-                                <span className="ageRating">PG-13</span>
-                                <span className="duration">2h 21 mins</span>
-                                <span className="releaseDate">2017</span>
+                            <div className="movieInfo-container row">
+                                <div className="movieInfo-content">
+                                    <span className="rating">
+                                    <IconContext.Provider value={{ className: "star-icon" }}>
+                                        <AiFillStar />
+                                        <AiFillStar />
+                                        <AiFillStar />
+                                        <AiFillStar />
+                                        <AiFillStar />
+                                    </IconContext.Provider>
+                                    </span>
+                                    <span className="ageRating">PG-13</span>
+                                    <span className="duration">2h 21 mins</span>
+                                    <span className="releaseDate">2017</span>
+                                </div>
                             </div>
 
                             <div className="MovieDetail row">
