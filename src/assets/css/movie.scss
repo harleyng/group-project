@@ -3,6 +3,9 @@
 #movie_thumnail{
     background: url('../../assets/img/poster-slider-background.jpg');
     background-size: cover;
+    height: 600px;
+    width: 100vw;
+    position: absolute;
     &::before {
         content: '';
         width: 100%;
@@ -11,107 +14,113 @@
         top: 0;
         background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.41) 10.94%, rgba(0, 0, 0, 0.1) 23.44%, rgba(0, 0, 0, 0) 27.08%, rgba(0, 0, 0, 0) 60.42%, rgba(0, 0, 0, 0.3) 69.27%, rgba(0, 0, 0, 0.7) 84.37%, #000000 100%), rgba(0, 0, 0, 0.3);
       }
-    .MovieThumbnail{
-        padding-top: 190px;
-        height: 100%;
-    }
-    .movieThumbnail_img{
-       float: right;
-    }
-    .like{
-        padding-top:10px;
-        float: right;
-    }
-    .like-btn{
-        background-color: gray;
-        width: 200px;
-        height: 50px;
-    }
-    .booking{
-        padding-top:10px;
-        float: right;
-    }
-    .booking-btn{
-        background-color: gray;
-        width: 200px;
-        height: 50px;
-    }
-    .detail{
-        border-bottom: #fff 1px solid;
-    }
-    .movie_img{
-        height: 250px;
-        width: 200px;
-    }
-    .gallery_img{
-        height: 200px;
-        width: 250px;
-    }
-    .soundtracks{
-        padding-top:10px;
-    }
-    .soundtracks-btn{
-        background-color: gray;
-        width: 250px;
-        height: 100px;
-    }
-    .movieInfo{
-        padding: 10px;
-        border-bottom: #fff 1px solid;
-    }
-    .rating{
-        padding-left: 10px;
-    }
-    .ageRating{
-        padding-left: 10px;
-    }
-    .duration{
-        padding-left: 10px;
-    }
-    .releaseDate{
-        padding-left: 10px;
-    }
-    .MovieDetail{
-        padding-top: 10px;
-    }
-    .categories{
-        font-size: 1.5rem;
-    }
-    .MovieDetail{
-        padding: 10px;
-        border-bottom: #fff 1px solid;
-    }
-    .capitalize{
-        text-align: right;
-        color: #939495;
-    }
-    .actor_name{
-       padding-left: 100px;
-        color: #939495;
-    }
 }
 
 #main{
+    padding-top: 300px;
     .MovieInfo{
         background: $black;
+        .detail_content{
+            padding: 0 10vw;
+            border-bottom: #fff 1px solid;
+            .movieThumbnail{
+                .movieThumbnail_img{
+                    float: right;
+                 }
+                 .like{
+                     padding-top:10px;
+                     float: right;
+                 }
+                 .like-btn{
+                     background-color: gray;
+                     width: 200px;
+                     height: 50px;
+                 }
+                 .booking{
+                     padding-top:10px;
+                     float: right;
+                 }
+                 .booking-btn{
+                     background-color: gray;
+                     width: 200px;
+                     height: 50px;
+                 }
+                 .movie_img{
+                     height: 250px;
+                     width: 200px;
+                 }
+            }
+            .movieDetail {
+                .movie_Info {
+                    padding: 0 20px;
+                    .movieInfo-container {
+                        padding: 15px;
+                        .movieInfo-content {
+                            width: 100%;
+                            padding: 10px 0;
+                            border-bottom: #fff 1px solid;
+                            border-top: #fff 1px solid;
+                            .ageRating{
+                                padding-left: 10px;
+                            }
+                            .duration{
+                                padding-left: 10px;
+                            }
+                            .releaseDate{
+                                padding-left: 10px;
+                            }
+                        }
+                    }
+                    .MovieDetail{
+                        padding: 15px;
+                        .movieDetail {
+                            padding: 0;
+                            .categories{
+                                font-size: 1.5rem;
+                            }
+                        }
+                    }
+                }
+                .movieGallery {
+                    .gallery_img{
+                        height: 200px;
+                        width: 100%;
+                    }
+                    .soundtracks{
+                        padding-top:10px;
+                    }
+                    .soundtracks-btn{
+                        background-color: gray;
+                        width: 100%;
+                        height: 100px;
+                    }
+                }
+            }
+        }
+        .capitalize{
+            text-align: right;
+            color: #939495;
+        }
+        .actor_name{
+           padding-left: 100px;
+            color: #939495;
+        }
     }
     .movie-storyline{
-        padding-left: 438px;
-        padding-top: 10px;  
-    }
-    .storyline{
-        font-size: 1.5rem;
-    }
-    .storyline-content{
-        padding: 10px;
-        width: 50%;
-        margin: 0 auto;
-        border-bottom: #fff 1px solid;
+        padding-top: 20px; 
+        border-top: #fff 1px solid;
+        .storyline{
+            font-size: 1.5rem;
+        }
+        .storyline-content{
+            padding: 10px 0;
+            margin: 0 auto;
+            border-bottom: #fff 1px solid;
+        } 
     }
     .trailer_vid{
         text-align: center;
         padding: 20px;
-        border-bottom: #fff 1px solid;
     }
 }
 
@@ -119,7 +128,6 @@
     padding: 35px;
     background: $black;
     border-bottom: #fff 1px solid;
-    height: 600px;
 
     .slick-active {
         button {
