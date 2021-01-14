@@ -1,0 +1,197 @@
+@import 'base';
+
+// Input: Image icon based on state of seat (default, selected, occupied)
+@mixin SeatBackground($url) {
+  background: {
+    image: $url !important;
+    repeat: no-repeat;
+    size: 80% 70%;
+    position: center;
+  }
+}
+@mixin SweetBoxBackground($url) {
+  background: {
+    image: $url;
+    repeat: no-repeat;
+    size: 90% 70%;
+    position: center;
+  }
+}
+@mixin background($url, $x, $y) {
+  background: {
+    image: $url;
+    repeat: no-repeat;
+    size: $x $y;
+  }
+}
+
+.seat-selector-container {
+  background-color: black;
+  .screen {
+    @include background(url("../img/screen.png"), 60%, 70%);
+    background-position: 60% 0;
+    padding: 30px 0;
+    margin-bottom: $regular-distance-between-block;
+    position: relative;
+    &::after {
+      content: 'SCREEN';
+      position: absolute;
+      left: 50%;
+    }
+  }
+  .showcase {
+    display: flex;
+    justify-content: center;
+    margin-top: $regular-distance-between-block;
+    li {
+      margin: 0 15px;
+      $seat-width: 60px;
+      .seat {
+        display: inline-block;
+        width: $seat-width;
+        height: $seat-row-height;
+        &.sweetbox {
+          width: $seat-width * 2;
+        }
+      }
+      span {
+        vertical-align: super;
+      }
+    }
+  }
+  #seat-selector-form, .showcase {
+    table {
+      width: 100%;
+      tr {
+        text-align: center;
+        td {
+          height: $seat-row-height;
+        }
+      }
+    }
+
+    // Default Seat
+    .seat:not(.empty):not(.sweetbox) {
+      background: {
+        image: url("../img/seat.png");
+        repeat: no-repeat;
+        size: 80% 70%;
+        position: center;
+      }
+    }
+    .sweetbox {
+      background: {
+        image: url("../img/sweetbox.png");
+        repeat: no-repeat;
+        size: 90% 70%;
+        position: center;
+      }
+    }
+
+    // Selected Seat
+    .seat.selected:not(.sweetbox) {
+      @include SeatBackground(url("../img/selected-seat.png"));
+    }
+    .sweetbox.selected {
+      @include SweetBoxBackground(url("../img/selected-sweetbox.png"));
+    }
+
+    // Occupied Seat
+    .seat.occupied:not(.sweetbox) {
+      @include SeatBackground(url("../img/occupied-seat.png"));
+    }
+    .sweetbox.occupied {
+      @include SweetBoxBackground(url("../img/occupied-sweetbox.png"));
+    }
+  }
+}
+
+#booking-confirmation-container {
+  font-size: 14px;
+  @include background(url('../img/seat-confirmation-background.png'), 100%, 100%);
+  height: 100%;
+  padding: 25% 5% 10%;
+  margin: auto;
+  #booking-confirmation-title {
+    font-size: 2.5vw;
+  }
+  .date-time-booked {
+    margin: 10% 0;
+    table {
+      width: 100%;
+      tr:first-child {
+        color: $gray_10;
+        td {
+          padding-bottom: 5%;
+        }
+      }
+      td {
+        width: 50%;
+      }
+    }
+  }
+  #seat-confirmation-title {
+    font-size: 1.75vw;
+  }
+  .seat-booked-info {
+    table {
+      padding: 0 10px;
+      width: 100%;
+      ::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 5px;
+      }
+      ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: $gray_60_transparent_60;
+        -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+      }
+      th {
+        background-color: $gray_60_transparent_60;
+        padding: 5px 0;
+      }
+      tr {
+        width: 100%;
+        text-align: center;
+        display: table;
+        table-layout: fixed;
+      }
+      tbody {
+        display: block;
+        height: 150px;
+        overflow-y: scroll;
+        tr {
+          td {
+            padding: 5% 0;
+          }
+          &:first-child {
+            td {
+              padding-top: 0;
+            }
+          }
+          &:last-child {
+            td {
+              padding-bottom: 0;
+            }
+          }
+        }
+      }
+      tfoot {
+        tr:first-child {
+          font-size: 2.5vw;
+          td {
+            padding-top: 20%;
+          }
+        }
+        td:last-child {
+          color: $light-salmon;
+        }
+        .seat-confirmation-button {
+          @include background(url('../img/seat-confirmation-button-background.png'), 100%, 100%);
+          width: 100%;
+          padding: 10px;
+        }
+      }
+    }
+  }
+}
