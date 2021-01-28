@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react'
 import $ from 'jquery'
+<<<<<<< HEAD:src/pages/Components/layout/Header.jsx
 import firebase from '../../../backend/firebase'
+=======
+import searchIcon from '../../assets/img/search-solid.svg'
+
+>>>>>>> master:src/components/layouts/Header.jsx
 const Header = () => {
     const handleScroll = () => {
         if($(window).scrollTop() > 50) {
@@ -10,6 +15,7 @@ const Header = () => {
            $(".header").removeClass("header-active");
         }
     }
+<<<<<<< HEAD:src/pages/Components/layout/Header.jsx
     const handleSignOut = () => {
         firebase.auth().signOut().then(() => {
             // Sign-out successful.
@@ -18,6 +24,9 @@ const Header = () => {
             // An error happened.
         });
     }
+=======
+
+>>>>>>> master:src/components/layouts/Header.jsx
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {

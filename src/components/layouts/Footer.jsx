@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import facebookLogo from '../../../assets/img/facebook.png'
-import instagramLogo from '../../../assets/img/insta.png'
-import youtubeLogo from '../../../assets/img/youtube.png'
-import githubLogo from '../../../assets/img/github.png'
-import Logo from '../../../assets/img/ticketland-logo.png'
+import React from 'react'
+import facebookLogo from '../../assets/img/facebook.png'
+import instagramLogo from '../../assets/img/insta.png'
+import youtubeLogo from '../../assets/img/youtube.png'
+import githubLogo from '../../assets/img/github.png'
+import Logo from '../../assets/img/ticketland-logo.png'
 
 const Footer = () => {
     return (
@@ -25,8 +25,8 @@ const Footer = () => {
 
                         <div className="col-3">
                             <div className="footerTitle"><span>ABOUT US</span></div>
-                            <div class="col-6">
-                                    <ul class="list-footer">
+                            <div className="col-6">
+                                    <ul className="list-footer">
                                         <li><a href="#" target="_blank" rel="noreferrer">ABOUT US</a></li>
                                         <li><a href="#" target="_blank" rel="noreferrer">GIFT CARD</a></li>
                                         <li><a href="#" target="_blank" rel="noreferrer">CAREER</a></li>
@@ -36,12 +36,12 @@ const Footer = () => {
 
                         <div className="col-3">
                             <div className="footerTitle"><span>CUSTOMER SERVICE</span></div>
-                            <div class="col-6">
-                                    <ul class="list-footer">
-                                        <li><a href="#" target="_blank" rel="noreferrer">HOTLINE : <span className="list-footer-info">086 933393</span></a></li>
-                                        <li><a href="#" target="_blank" rel="noreferrer">EMAIL SUPPORT: <span className="list-footer-info">ticketland@usth.vn</span></a></li>
-                                        <li><a href="#" target="_blank" rel="noreferrer">ADDRESS : <span className="list-footer-info">58 Dao Tan, Ba Dinh, Ha Noi</span></a></li>
-                                        <li><a href="#" target="_blank" rel="noreferrer">WORKING HOURS : <span className="list-footer-info">8 A.M - 6 P.M </span></a></li>
+                            <div className="col-6">
+                                    <ul className="list-footer">
+                                        <li><p>HOTLINE : <span className="list-footer-info">086 933393</span></p></li>
+                                        <li><p>EMAIL SUPPORT: <span className="list-footer-info">ticketland@usth.vn</span></p></li>
+                                        <li><p>ADDRESS : <span className="list-footer-info">58 Dao Tan, Ba Dinh, Ha Noi</span></p></li>
+                                        <li><p>WORKING HOURS : <span className="list-footer-info">8 A.M - 6 P.M </span></p></li>
                                     </ul>
                             </div>
                         </div>

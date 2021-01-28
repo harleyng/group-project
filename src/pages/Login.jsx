@@ -17,6 +17,7 @@ import Container from "@material-ui/core/Container";
 
 
 const Login = () => {
+<<<<<<< HEAD
     const [formData, setformData] = useState({userName: "", password: ""})
     const [user, setUser] = useState('');
     const [submit, setsubmit] = useState(false)
@@ -48,6 +49,11 @@ const Login = () => {
     useEffect(() => {
         authListener(); 
     }, [submit])
+=======
+    // const [userName, setuserName] = useState(null)
+    // const [password, setpassword] = useState(null)
+    
+>>>>>>> master
     return (
         <div className="LoginContainer">
             <div className="LoginContent">
@@ -62,8 +68,12 @@ const Login = () => {
                                     id="userName" 
                                     label="Account" 
                                     name="userName" 
+<<<<<<< HEAD
                                     autoFocus
                                     onChange={handleInputChange}/>
+=======
+                                    autoFocus/>
+>>>>>>> master
 
                              <TextField variant="outlined" 
                                     margin="normal" 
@@ -71,14 +81,19 @@ const Login = () => {
                                     name="password" 
                                     label="Password" 
                                     type="password" 
+<<<<<<< HEAD
                                     id="password"
                                     onChange={handleInputChange}/>
+=======
+                                    id="password"/>
+>>>>>>> master
 
                             <FormControlLabel
                                 control={<Checkbox value="remember" color="primary" />}
                                 label="Remember Me"
                             />
 
+<<<<<<< HEAD
                             <Button 
                                     fullWidth 
                                     variant="contained" 
@@ -88,6 +103,12 @@ const Login = () => {
                                         authListener()
                                     }}
                                     >Sign In</Button>
+=======
+                            <Button type="submit" 
+                                    fullWidth 
+                                    variant="contained" 
+                                    color="primary">Sign In</Button>
+>>>>>>> master
 
                             <Grid container>
                                 <Grid item xs>

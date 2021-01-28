@@ -1,22 +1,96 @@
+@import "color";
+@import "dimen";
 
+html, body {
+  &:not(.blog-category, .blog-detail) {
+    overflow-x: hidden;
+  }
+  width: 100%;
+  height: auto;
+  scroll-behavior: smooth;
+}
+body {
+  // font-size: 14px !important;
+  // line-height: 1.7 !important;
+  font-family: 'Oxygen', sans-serif;
+  font-style: 'normal';
+  color: $text-primary !important;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+button {
+  border: none;
+  background: none;
+}
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+a, a:hover {
+  color: $white;
+  text-decoration: none;
+}
+input {
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}
+.unselectable {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  // color: #cc0000;
+}
+@mixin double-transition($property1, $property2) {
+  -webkit-transition: $property1, $property2;
+  -moz-transition: $property1, $property2;
+  -o-transition: $property1, $property2;
+  transition: $property1, $property2;
+}
+@mixin box-shadow($property) {
+  -webkit-box-shadow: $property;
+  -moz-box-shadow: $property;
+  box-shadow: $property;
+}
+@mixin triangle($width, $color) {
+  border: {
+    left: $width solid transparent;
+    right: $width solid transparent;
+    bottom: $width solid $color;
+  }
+} 
+.yellow-text, .star-icon {
+  color: $happy-yellow;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.capitalize {
+  text-transform: capitalize;
+}
 /////////////////////////// HEADER ///////////////////////////
 .header{
-  background: black;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  padding: 20px;
+  width: 100%;
+  transition: all 0.3s ease-in;
   .navTitle {
-    padding: 10px;
-    color: white;
     font-family: 'Oxygen', sans-serif;
     font-style: 'normal';
-    font-size: 1rem;
+    font-size: 1.2rem;
     letter-spacing: 0.3em;
   }
-  
-  .list-inline{
-    padding: 10px;
-  }
-  
+
   .search-icon{
-    background:white;
+    background:$white;
     width: 50px;
     height: 50px;
   }
@@ -24,34 +98,36 @@
   li {
     display: inline;
   }
-  
-  a {
+  .menu-item{
     padding: 8px;
-    color: white;
     font-family: 'Oxygen', sans-serif;
     font-style: 'normal';
     font-size: 0.7rem;
   }
+  a {
+    font-family: 'Oxygen', sans-serif;
+    font-style: 'normal';
+  }
   
   .navSignin{
-    padding: 10px;
-    color: white;
     font-family: 'Oxygen', sans-serif;
     font-style: 'normal';
     font-size: 1rem;
   }
 }
+.header-active {
+  background: $black;
+}
 
 /////////////////////////// FOOTER ///////////////////////////
 .footer{
-  background: #000000;
+  background: $black;
   #footerTitle{
     right: 100px;
   }
   .socialContact {
-    padding: 20px 0;
-    border-top: solid #000000 2px;
-    border-bottom: solid #3c5e2c 2px;
+    padding: 50px 0;
+    border-top: solid $black 2px;
   }
   .col-3 {
     max-width: 100%;
@@ -61,31 +137,30 @@
     max-width: 100%;
     padding: 0;
   }
-  ul{
-    list-style-type: none;
-    color: white;
-  }
   ul.list-footer {
     margin: 0;
     padding: 0;
   }
   a , a:hover{
-    color: white;
     font-family: 'Oxygen', sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 0.7rem;
   }
+  p {
+    font-size: 0.7rem;
+    font-weight: 300;
+  }
   .footerTitle {
     padding-bottom: 10px;
-    color: white;
+    color: $white;
     font-family: 'Oxygen', sans-serif;
     font-style: normal;
     font-size: 1rem;
   }
   .footerTitle-2 {
     padding-bottom: 10px;
-    color: #808080;
+    color: $text-secondary;
     font-family: 'Oxygen', sans-serif;
     font-style: normal;
     font-size: 0.5rem;
@@ -95,7 +170,7 @@
     font-style: normal;
     font-weight: 300;
     font-size: 0.5rem;
-    color: #888888;
+    color: $text-secondary;
   }
   .social-Logo{
     padding: 10px;
@@ -105,5 +180,38 @@
   .Logo{
     width: 100px;
     height: 40px;
+  }
+}
+
+/////////////////////////// LOGIN ///////////////////////////
+.LoginContainer, .register-container{
+  background: url('../img/netflix-background-9.jpg');
+  height: 100vh;
+  padding: 100px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(circle, rgba(124, 116, 116, 0.453) 8%, rgba(0,0,0,0.49763655462184875) 17%, rgba(0,0,0,0.8113620448179272) 58%, rgba(0,0,0,1) 100%);
+  }
+  
+  .LoginContent, .register-content{
+    background: $white;
+    font-family: 'Oxygen', sans-serif;
+    font-style: normal;
+    font-size: 1rem;
+    padding: 60px 20px;
+    z-index: 1;
+    border-radius: 12px;
+    .sign-in, .register-title, .receive-noti{
+      text-align: center;
+      color: $black;
+    }
   }
 }
