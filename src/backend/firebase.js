@@ -1,3 +1,4 @@
+import firebase from 'firebase'
 var firebaseConfig = {
   apiKey: "AIzaSyCP7cjatL6T7NIejEzW8bha35w44s6xY6I",
   authDomain: "ticketland-cb74c.firebaseapp.com",
@@ -8,5 +9,6 @@ var firebaseConfig = {
   appId: "1:564923974023:web:fd0e39fce5b6c31ce7d322",
   measurementId: "G-KEVLE3MCDT"
 };
-firebase.initializeApp(firebaseConfig);
+const fire = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth()
+export default fire;
