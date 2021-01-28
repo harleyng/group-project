@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {firebaseConfig} from '../backend/firebase.js'
 
 // Material UI
 import Avatar from "@material-ui/core/Avatar";
@@ -14,7 +15,7 @@ import Container from "@material-ui/core/Container";
 
 
 
-const Login = () => {
+const handleLogin = () => {
     const [userName, setuserName] = useState(null)
     const [password, setpassword] = useState(null)
     
