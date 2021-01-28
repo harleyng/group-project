@@ -1,13 +1,35 @@
-import React, { Component } from 'react'
-import searchIcon from '../../../assets/img/search-solid.svg'
-
+import React, { useEffect } from 'react'
+import $ from 'jquery'
+import firebase from '../../../backend/firebase'
 const Header = () => {
+    const handleScroll = () => {
+        if($(window).scrollTop() > 50) {
+            $(".header").addClass("header-active");
+        } else {
+            //remove the background property so it comes transparent again (defined in your css)
+           $(".header").removeClass("header-active");
+        }
+    }
+    const handleSignOut = () => {
+        firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+            console.log('sign out')
+          }).catch((error) => {
+            // An error happened.
+        });
+    }
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+        window.removeEventListener("scroll", handleScroll);
+        }
+    }, [])
     return (
         <div className="header">
             <div className="container">
                 <div className="row">
                     <div className="col-3 text-left" id="navLeft">
-                        <div className="navTitle"><span>TICKETLAND</span></div>
+                        <div className="navTitle"><a href="#"><span>TICKETLAND</span></a></div>
                     </div>
                     <div className="col-6 text-center" id="navCenter">
                         <ul className="list-inline">
@@ -17,8 +39,9 @@ const Header = () => {
                             <li className="menu-item"><a href=""><span>ABOUT</span></a></li>
                         </ul>
                     </div>
-                    <div className="col-3 text-right" id="navLeft">
-                        <div className="navSignin"><span>SIGN IN</span></div>
+                    <div className="col-3 text-right" id="navLeft" style={{color:'white'}}>
+                        <a href="/login"><button className="navSignIn"><span>SIGN IN</span></button></a>
+                        <button className="navSignOut" onClick={handleSignOut}><span>SIGN OUT</span></button>
                     </div>
                 </div>
             </div>

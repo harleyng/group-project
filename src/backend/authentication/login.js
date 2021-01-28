@@ -1,24 +1,18 @@
-import firebaseConfig from '../firebase'
-const auth = firebase.auth()
-firebase.auth().signInWithEmailAndPassword(email, password)
+import { Redirect } from 'react-router-dom';
+import firebase from '../firebase'
+
+
+const LoginHandler = props => {
+  const { userName, password } = props
+  console.log('signed')
+
+  firebase.auth().signInWithEmailAndPassword(userName, password)
   .then((userCredential) => {
     // Signed in
     var user = userCredential.user;
-    // ...
   })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
+  .catch((err) => { 
+    console.log(err)
   });
-
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      var uid = user.uid;
-      // ...
-    } else {
-      // User is signed out
-      // ...
-    }
-  });
+}
+export default LoginHandler;
