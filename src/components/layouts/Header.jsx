@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react'
 import $ from 'jquery'
+<<<<<<< HEAD:src/pages/Components/layout/Header.jsx
+import firebase from '../../../backend/firebase'
+=======
 import searchIcon from '../../assets/img/search-solid.svg'
 
+>>>>>>> master:src/components/layouts/Header.jsx
 const Header = () => {
     const handleScroll = () => {
         if($(window).scrollTop() > 50) {
@@ -11,7 +15,18 @@ const Header = () => {
            $(".header").removeClass("header-active");
         }
     }
+<<<<<<< HEAD:src/pages/Components/layout/Header.jsx
+    const handleSignOut = () => {
+        firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+            console.log('sign out')
+          }).catch((error) => {
+            // An error happened.
+        });
+    }
+=======
 
+>>>>>>> master:src/components/layouts/Header.jsx
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {
@@ -33,8 +48,9 @@ const Header = () => {
                             <li className="menu-item"><a href=""><span>ABOUT</span></a></li>
                         </ul>
                     </div>
-                    <div className="col-3 text-right" id="navLeft">
-                        <div className="navSignin"><span>SIGN IN</span></div>
+                    <div className="col-3 text-right" id="navLeft" style={{color:'white'}}>
+                        <a href="/login"><button className="navSignIn"><span>SIGN IN</span></button></a>
+                        <button className="navSignOut" onClick={handleSignOut}><span>SIGN OUT</span></button>
                     </div>
                 </div>
             </div>
