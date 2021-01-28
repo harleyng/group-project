@@ -80,12 +80,14 @@ const Booking = () => {
     }
   }, [])
   return (
-    <div className="row mt-5">
-      <div className="col-8">
-        <SeatSelector/>
-      </div>
-      <div className="col-4">
-        <BookingConfirmation total={total} render={renderSeatSelect}/>
+    <div className="bookingContainer d-flex">
+      <div className="bookingContent row">
+        <div className="col-8">
+          <SeatSelector/>
+        </div>
+        <div className="col-4">
+          <BookingConfirmation total={total} render={renderSeatSelect}/>
+        </div>
       </div>
     </div>
   )
