@@ -115,6 +115,9 @@ input {
     font-size: 1rem;
     color: white;
   }
+  .navSignedIn {
+    display: none;
+  }
 }
 .header-active {
   background: $black;

@@ -18,6 +18,17 @@ const Header = () => {
             // An error happened.
         });
     }
+    fire.auth().onAuthStateChanged(user => {
+        if (user) {
+            // console.log(user)
+            console.log('have user')
+            $('.navSignIn').addClass('navSignedIn')
+        } else {
+            console.log('not have user')
+            $('.navSignIn').removeClass('navSignedIn')
+        }
+        }
+    );
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {

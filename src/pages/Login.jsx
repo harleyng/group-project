@@ -1,7 +1,7 @@
 import React, { useState ,useEffect } from 'react';
 import { useHistory } from "react-router-dom";
-import LoginHandler from '../backend/authentication/login'
 import fire from '../backend/firebase'
+import $ from 'jquery'
 
 // Material UI
 import Button from "@material-ui/core/Button";
@@ -17,10 +17,8 @@ import Container from "@material-ui/core/Container";
 
 
 const Login = () => {
-    const [formData, setformData] = useState({userName: "", password: ""})
-    const [user, setUser] = useState('');
-    const [submit, setsubmit] = useState(false)
-    let history = useHistory();
+    const [formData, setformData] = useState({email: "", password: ""})
+    // const [user, setUser] = useState('');
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -29,25 +27,18 @@ const Login = () => {
             [name]: value
         }))
     }
-    const authListener = () => {
-        console.log(submit)
-
-        fire.auth().onAuthStateChanged(user => {
-          if (user) {
-            setUser(user);
-            // console.log(user)
-            history.push('/')
-          }
-            else {
-                
-                setUser("");
-            }
-          }
-        );
-    };
-    useEffect(() => {
-        authListener(); 
-    }, [submit])
+    const LoginHandler = () => {
+        fire.auth().signInWithEmailAndPassword(formData.email, formData.password)
+        .then((userCredential) => {
+          // Signed in
+          window.location.replace("/");
+            //   var user = userCredential.user;
+            //   setUser(user);
+        })
+        .catch((err) => { 
+          console.log(err)
+        });
+      }
     return (
         <div className="LoginContainer">
             <div className="LoginContent">
@@ -59,9 +50,9 @@ const Login = () => {
                             <TextField variant="outlined" 
                                     margin="normal" 
                                     required fullWidth 
-                                    id="userName" 
-                                    label="Account" 
-                                    name="userName" 
+                                    id="email" 
+                                    label="Email" 
+                                    name="email" 
                                     autoFocus
                                     onChange={handleInputChange}/>
 
@@ -84,8 +75,7 @@ const Login = () => {
                                     variant="contained" 
                                     color="primary"
                                     onClick={() => {
-                                        LoginHandler(formData)
-                                        authListener()
+                                        LoginHandler()
                                     }}
                                     >Sign In</Button>
 

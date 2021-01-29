@@ -1,14 +1,13 @@
-import { Redirect } from 'react-router-dom';
-import firebase from '../firebase'
+import fire from '../firebase'
 
 
 const LoginHandler = props => {
   const { userName, password } = props
-  console.log('signed')
 
-  firebase.auth().signInWithEmailAndPassword(userName, password)
+  fire.auth().signInWithEmailAndPassword(userName, password)
   .then((userCredential) => {
     // Signed in
+    window.location.replace("/");
     var user = userCredential.user;
   })
   .catch((err) => { 
