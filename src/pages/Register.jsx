@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { isEmail, isEmpty, isLength, isContainWhiteSpace, isPasswordMatch, isPhone, isName } from '..//validator.js';
 import Swal from 'sweetalert2'
+import fire from '../backend/firebase'
+// import { db } from '../backend/firebase'
+
+import firebase from 'firebase'
 
 // Material UI
 import Button from "@material-ui/core/Button";
@@ -11,10 +15,11 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+const db = firebase.firestore();
 
 const Register = () => {
-  const [formData, setformData] = useState({firstname: "", lastname: "", username: "", phone: "", email: "", password: "", repassword: "", DOB: "2020-01-01", religion: "", preferSite: ""})
-  const [errors, seterrors] = useState({firstname: "", lastname: "", username: "",  phone: "", email: "", password: "", repassword: "",religion: "", preferSite: ""})
+  const [formData, setformData] = useState({firstname: "", lastname: "", username: "", phone: "", email: "", password: "", repassword: "", DOB: "2020-01-01"})
+  const [errors, seterrors] = useState({firstname: "", lastname: "", username: "",  phone: "", email: "", password: "", repassword: ""})
   const initialformValidated = {
     firstname: false,
     lastname: false,
@@ -36,7 +41,7 @@ const Register = () => {
       console.log(formData);
   }
 
-  const validateLoginForm = (e) => {
+  const validateLoginForm = () => {
       let err = {};
 
       if (formData.firstname) {
@@ -100,12 +105,12 @@ const Register = () => {
     }
   }, [formData])
   
-  const isFieldEmpty = () => {
+  const isFieldEmpty = (callback) => {
     for (const key in formData) {
       if (formData[key] === "") {
         seterrors((prevData) => ({
           ...prevData,
-          [key]: key + " Can't be blank"
+          [key]: key + " can't be blank"
         }))
         setformValidated((prevData) => ({
           ...prevData,
@@ -113,36 +118,70 @@ const Register = () => {
         }));
       }
     }
+    // If all field are not blank
+    // callback will be called
+    if (Object.values(formValidated).includes(true) === false) {
+      callback();
+    }
   }
-  const register = (e) => {
-      e.preventDefault();
 
-      // check if any field is empty
-      // yes => show error
-      // no => submit
-      isFieldEmpty(() => {
-        const err = validateLoginForm();
-        if(err === true) {
-          alert("You are successfully signed in...");
-          // window.location.reload()
-        } else {
-          // alert the first error
-          Swal.fire({
-            title: 'You have failed to sign up',
-            text: err[Object.keys(err)[0]],
-            icon: 'error'
+  const register = (e) => {
+    e.preventDefault();
+    // check if any field is empty
+    // yes => show error
+    // no => submit
+    isFieldEmpty(() => {
+      const err = validateLoginForm();
+
+      if(err === true) {
+        db
+          .collection('users')
+          .where("username", "==", formData.username)
+          .get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              Swal.fire({
+              title: 'You have failed to sign up',
+              text: 'This username is already taken',
+              icon: 'error'
+              })
+            });
+            if (querySnapshot.empty === true) {
+              fire.auth().createUserWithEmailAndPassword(formData.email, formData.password)
+              .then(() => {
+                db.collection('users').add({
+                  firstName: formData.firstname,
+                  lastName: formData.lastname,
+                  email: formData.email,
+                  phoneNumber: formData.phone,
+                  DOB: formData.DOB,
+                  password: formData.password,
+                  confirmPassword: formData.repassword,
+                  username: formData.username
+                })
+                .then(() => {
+                  window.location.replace("/");
+                })
+              })
+              .catch((error) => {
+                Swal.fire({
+                  title: 'You have failed to sign up',
+                  text: error.message,
+                  icon: 'error'
+                })
+              });
+            }
           })
-        }
-      })
+      } else {
+        // alert the first error
+        Swal.fire({
+          title: 'You have failed to sign up',
+          text: err[Object.keys(err)[0]],
+          icon: 'error'
+        })
+      }
+    })
   }
-  
-  // const getOptions = (start, end) => {
-  //   const options = [];
-  //   for(let i = start; i <= end; i++) {
-  //     options.push(<option key={i}>{i}</option>)
-  //   }
-  //   return options;
-  // }
 
   return (
     <div className="register-container">
