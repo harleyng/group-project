@@ -15,7 +15,10 @@ import Register from './pages/Register'
 import Login from './pages/Login';
 import Home from './pages/Home';
 import DetailMovie from './pages/DetailMovie'
+
+import BookingForm from './components/Detail-Movie/BookingForm'
 import Booking from './pages/Booking'
+
 
 function App() {
   return (

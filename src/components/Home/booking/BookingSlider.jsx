@@ -5,7 +5,7 @@ import $ from 'jquery'
 
 import MovieBooking from './movie-booking/MovieBooking'
 import TimeBooking from './time-booking/TimeBooking';
-import CinemaBooking from './CinemaBooking';
+import CinemaBooking from './cinema-booking/CinemaBooking';
 
 const BookingSlider = () => {
   const titles = ['SCHEDULE BASED ON MOVIE', 'SCHEDULE BASED ON TIME', 'SCHEDULE BASED ON CINEMA HALL'];

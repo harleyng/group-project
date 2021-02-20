@@ -2,11 +2,27 @@ import React from 'react'
 import Trailer from '../../assets/img/trailer-1.png'
 import MovieImg from '../../assets/img/movie-slider-bg.jpg'
 import ActorImg from '../../assets/img/gal_gadot.png'
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import { makeStyles } from '@material-ui/core/styles';
+import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
 
 import { IconContext } from "react-icons";
 import { AiFillStar } from 'react-icons/ai';
 
 const MovieInfo = () => {
+    const useStyles = makeStyles((theme) => ({
+        formControl: {
+          margin: theme.spacing(1),
+          minWidth: 50,
+        },
+        formLabel:{
+            color:"#000000",
+        }
+      }));
+    const classes = useStyles();
+
     return (
         <div className="MovieInfo">
             <div className="detail_content row">
@@ -18,10 +34,79 @@ const MovieInfo = () => {
 
                 <div className="movieDetail col-9">
                     <div className="row">
-                        <div className="movie_Info col-8">
+                        <div className="movie_Info col-12">
                             <h1>WONDER WOMAN</h1>
                             <p className="detail">When a pilot crashes and tells of conflict in the outside world, Diana, an Amazonian warrior in training, leaves home to fight a war, discovering her full powers and true destiny.</p>
 
+                            <div className="bookingDetail row">
+                                <div className="detail col-3">
+                                    <FormControl className={classes.formControl}>
+                                        <InputLabel htmlFor="grouped-native-select" style={{color: "wheat"}}>City</InputLabel>
+                                        <Select native defaultValue="" id="grouped-native-select" style={{color: "wheat"}}>
+                                            <option aria-label="None" value="" />
+                                            <option value={1}>TICKETLAND HA NOI</option>
+                                            <option value={2}>TICKETLAND HO CHI MINH</option>
+                                            <option value={3}>TICKETLAND DA NANG</option>
+                                        </Select>
+                                    </FormControl>  
+
+                                    <FormControl className={classes.formControl}>
+                                        <InputLabel htmlFor="grouped-native-select" style={{color: "wheat"}}>Street</InputLabel>
+                                        <Select native defaultValue="" id="grouped-native-select" style={{color: "wheat"}}>
+                                            <option aria-label="None" value="" />
+                                            <option value={1}>TICKETLAND DAO TAN</option>
+                                            <option value={2}>TICKETLAND HOANG QUOC VIET</option>
+                                            <option value={3}>TICKETLAND THANH CONG</option>
+                                        </Select>
+                                    </FormControl>
+                                </div>
+
+                                <div className="listOfDay col-9">
+                                    <ul class="detail__listOfDay">
+                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">01</p><p class="date">Mon</p></li>
+                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">02</p><p class="date">Tue</p></li>
+                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">03</p><p class="date">Wed</p></li>
+                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">04</p><p class="date">Thurs</p></li>
+                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">05</p><p class="date">Fri</p></li>
+                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">06</p><p class="date">Sat</p></li>
+                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">07</p><p class="date">Sun</p></li>
+                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">08</p><p class="date">Mon</p></li>
+                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">09</p><p class="date">Tue</p></li>
+                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">10</p><p class="date">Wed</p></li>
+                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">11</p><p class="date">Thurs</p></li>
+                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">12</p><p class="date">Fri</p></li>
+                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">13</p><p class="date">Sat</p></li>
+                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">14</p><p class="date">Sun</p></li>
+                                    </ul>
+                                    <div className="detail-showlist row">
+                                        <div className="button-time">
+                                            <Button variant="contained">8:30</Button>
+                                        </div>
+                                        <div className="button-time">
+                                            <Button variant="contained">10:30</Button>
+                                        </div>
+                                        <div className="button-time">
+                                            <Button variant="contained">12:30</Button>
+                                        </div>
+                                        <div className="button-time">
+                                            <Button variant="contained">14:30</Button>
+                                        </div>
+                                        <div className="button-time">
+                                            <Button variant="contained">16:30</Button>
+                                        </div>
+                                        <div className="button-time">
+                                            <Button variant="contained">20:30</Button>
+                                        </div>
+                                        <div className="button-time">
+                                            <Button variant="contained">22:30</Button>
+                                        </div>
+                                        <div className="button-time">
+                                            <Button variant="contained">23:30</Button>
+                                        </div>
+                                    </div> 
+                                </div>       
+                            </div>
+                            
                             <div className="movieInfo-container row">
                                 <div className="movieInfo-content">
                                     <span className="rating">
@@ -86,11 +171,6 @@ const MovieInfo = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="movieGallery col-4">
-                            <h3>GALLERY</h3>
-                            <div className="movieGallery_img" ><a href="#"><img className="gallery_img" src={MovieImg} alt="social-facebook"/></a></div>
-                            <div className="soundtracks"><button className="soundtracks-btn">SOUNDTRACKS</button></div>
-                        </div>  
                     </div>
                     <div className="movie-story-trailer">
 
@@ -104,7 +184,7 @@ const MovieInfo = () => {
 
                     <div className="trailer">
                         <div className="trailer_vid">
-                            <iframe width="700" height="400" src="https://www.youtube.com/embed/1Q8fG0TtVAY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="1000" height="400" src="https://www.youtube.com/embed/1Q8fG0TtVAY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                     </div>
 
