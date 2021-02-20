@@ -82,7 +82,7 @@ const AnotherMovie = () => {
       
     return (
         <div>
-            <div id ="anotherMovie" className="movie-slider">
+            <div id="anotherMovie" className="movie-slider">
                 <h3 className="slider-title">Another Movie</h3>
                 <Slider {...settings}> 
                     {movieList.map(item => (

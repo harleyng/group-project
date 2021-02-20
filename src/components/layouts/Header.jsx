@@ -23,7 +23,7 @@ const Header = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-3 text-left" id="navLeft">
-                        <div className="navTitle"><a href="#"><span>TICKETLAND</span></a></div>
+                        <div className="navTitle"><a href="/"><span>TICKETLAND</span></a></div>
                     </div>
                     <div className="col-6 text-center" id="navCenter">
                         <ul className="list-inline">
@@ -34,7 +34,7 @@ const Header = () => {
                         </ul>
                     </div>
                     <div className="col-3 text-right" id="navLeft">
-                        <div className="navSignin"><span>SIGN IN</span></div>
+                        <div className="navSignin"><span><a href="/login">SIGN IN</a></span></div>
                     </div>
                 </div>
             </div>

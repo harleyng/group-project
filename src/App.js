@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/css/base.scss'
 import './assets/css/home.scss'
 import './assets/css/movie.scss'
+import './assets/css/booking.scss'
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
@@ -14,6 +15,8 @@ import Register from './pages/Register'
 import Login from './pages/Login';
 import Home from './pages/Home';
 import DetailMovie from './pages/DetailMovie'
+import BookingForm from './components/Detail-Movie/BookingForm'
+
 
 function App() {
   return (
@@ -25,6 +28,7 @@ function App() {
               <Route exact path="/login" component={Login}/>
               <Route exact path="/register" component={Register}/>
               <Route exact path="/movie" component={DetailMovie}/>
+              <Route exact path="/booking" component={BookingForm}/>
             </Switch>
         </BrowserRouter>
       </MasterLayout>

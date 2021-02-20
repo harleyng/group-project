@@ -145,9 +145,25 @@
     .booking-slider {
       $padding-top-booking-slider: 300px;
       padding-top: $padding-top-booking-slider;
+      .slick-slider:not(.movie-slider ~ .slick-slider) {
+        .slick-list {
+          .slick-track {
+            .slick-slide {
+              display: block;
+              &:not(.slick-active) {
+                display: none;
+              }
+            }
+            .slick-active {
+              left: 0 !important;
+            }
+          }
+        }
+      }
+
       #booking-slider-custom-dots {
         top: -$padding-top-booking-slider + 150px;
-        bottom: $padding-top-booking-slider * 2;
+        bottom: $padding-top-booking-slider * 5;
         li {
           width: 30%;
           padding: 30px 0;
@@ -254,10 +270,35 @@
     }
   }
 
+// booking-on-time
   #date-picker-dialog{
     color: white;
+  }
+  #date-picker-dialog-label{
+    color: white;
+    font-size: 20px;
+  }
+  #time-picker-label{
+    color: white;
+    font-size: 20px;
   }
   #time-picker{
     color: white;
   }
+  button{
+    color: white;
+  }
+//booking on cinema
+  .booking-on-cinema{
+    .grid{
+      text-align: center;
+      padding-bottom: 3rem;
+    }
+    #grouped-native-select{
+      color: white;
+    }
+  } 
 }
+
+
+

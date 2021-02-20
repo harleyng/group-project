@@ -22,7 +22,7 @@ export default function DatePicker() {
         <KeyboardDatePicker
           margin="normal"
           id="date-picker-dialog"
-          label="Date picker dialog"
+          label="Chọn Ngày"
           format="MM/dd/yyyy"
           value={selectedDate}
           onChange={handleDateChange}
@@ -33,7 +33,7 @@ export default function DatePicker() {
         <KeyboardTimePicker
           margin="normal"
           id="time-picker"
-          label="Time picker"
+          label="Chọn Giờ"
           value={selectedDate}
           onChange={handleDateChange}
           KeyboardButtonProps={{

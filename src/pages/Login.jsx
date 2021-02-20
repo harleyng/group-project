@@ -44,6 +44,7 @@ const Login = () => {
                             <FormControlLabel
                                 control={<Checkbox value="remember" color="primary" />}
                                 label="Remember Me"
+                                id="remember"
                             />
 
                             <Button type="submit" 
@@ -53,8 +54,8 @@ const Login = () => {
 
                             <Grid container>
                                 <Grid item xs>
-                                    <Link href="#" variant="body2">
-                                        Forget Password?
+                                    <Link href="/register" variant="body2">
+                                        Register ?
                                     </Link>
                                 </Grid>
                             </Grid>
