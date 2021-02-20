@@ -1,7 +1,5 @@
-import React, { useState ,useEffect } from 'react';
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
 import fire from '../backend/firebase'
-import $ from 'jquery'
 
 // Material UI
 import Button from "@material-ui/core/Button";
@@ -29,11 +27,8 @@ const Login = () => {
     }
     const LoginHandler = () => {
         fire.auth().signInWithEmailAndPassword(formData.email, formData.password)
-        .then((userCredential) => {
-          // Signed in
+        .then(() => {
           window.location.replace("/");
-            //   var user = userCredential.user;
-            //   setUser(user);
         })
         .catch((err) => { 
           console.log(err)
