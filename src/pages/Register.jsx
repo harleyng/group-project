@@ -159,7 +159,9 @@ const Register = () => {
                   confirmPassword: formData.repassword,
                   username: formData.username
                 })
-                // window.location.replace("/");
+                .then(() => {
+                  window.location.replace("/");
+                })
               })
               .catch((error) => {
                 Swal.fire({
