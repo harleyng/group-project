@@ -109,10 +109,14 @@ input {
     font-style: 'normal';
   }
   
-  .navSignin{
+  .navSignIn, .navSignOut{
     font-family: 'Oxygen', sans-serif;
     font-style: 'normal';
     font-size: 1rem;
+    color: white;
+  }
+  .navSignedIn {
+    display: none;
   }
 }
 .header-active {

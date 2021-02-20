@@ -214,7 +214,7 @@
           top: 0;
           height: $movie-slider-img-height;
           width: 50px;
-          background-color: $gray_transparent_60;
+          background-color: $gray_50_transparent_60;
           transform: translate(0);
           transition: all .2s ease-in-out;
           &::before {
@@ -230,7 +230,7 @@
             -webkit-font-smoothing: antialiased;
           }
           &:hover {
-            background-color: $gray_transparent_80;
+            background-color: $gray_50_transparent_80;
             cursor: pointer;
           }
         }
@@ -248,9 +248,11 @@
         }
         .slick-list {
           margin: 0 -10px;
+          overflow: visible;
           .slick-slide > div {
               margin: 0 10px;
             .item-container {
+              position: relative;
               img {
                 height: $movie-slider-img-height;
                 width: 100%;

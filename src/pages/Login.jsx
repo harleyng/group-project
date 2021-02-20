@@ -1,4 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState ,useEffect } from 'react';
+import { useHistory } from "react-router-dom";
+import fire from '../backend/firebase'
+import $ from 'jquery'
 
 // Material UI
 import Button from "@material-ui/core/Button";
@@ -14,9 +17,28 @@ import Container from "@material-ui/core/Container";
 
 
 const Login = () => {
-    // const [userName, setuserName] = useState(null)
-    // const [password, setpassword] = useState(null)
-    
+    const [formData, setformData] = useState({email: "", password: ""})
+    // const [user, setUser] = useState('');
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setformData(prevData => ({
+            ...prevData,
+            [name]: value
+        }))
+    }
+    const LoginHandler = () => {
+        fire.auth().signInWithEmailAndPassword(formData.email, formData.password)
+        .then((userCredential) => {
+          // Signed in
+          window.location.replace("/");
+            //   var user = userCredential.user;
+            //   setUser(user);
+        })
+        .catch((err) => { 
+          console.log(err)
+        });
+      }
     return (
         <div className="LoginContainer">
             <div className="LoginContent">
@@ -28,10 +50,11 @@ const Login = () => {
                             <TextField variant="outlined" 
                                     margin="normal" 
                                     required fullWidth 
-                                    id="userName" 
-                                    label="Account" 
-                                    name="userName" 
-                                    autoFocus/>
+                                    id="email" 
+                                    label="Email" 
+                                    name="email" 
+                                    autoFocus
+                                    onChange={handleInputChange}/>
 
                              <TextField variant="outlined" 
                                     margin="normal" 
@@ -39,7 +62,8 @@ const Login = () => {
                                     name="password" 
                                     label="Password" 
                                     type="password" 
-                                    id="password"/>
+                                    id="password"
+                                    onChange={handleInputChange}/>
 
                             <FormControlLabel
                                 control={<Checkbox value="remember" color="primary" />}
@@ -47,10 +71,14 @@ const Login = () => {
                                 id="remember"
                             />
 
-                            <Button type="submit" 
+                            <Button 
                                     fullWidth 
                                     variant="contained" 
-                                    color="primary">Sign In</Button>
+                                    color="primary"
+                                    onClick={() => {
+                                        LoginHandler()
+                                    }}
+                                    >Sign In</Button>
 
                             <Grid container>
                                 <Grid item xs>
