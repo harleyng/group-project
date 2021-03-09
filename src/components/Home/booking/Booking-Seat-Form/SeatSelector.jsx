@@ -4,15 +4,14 @@ import { db }  from '../../../../backend/firebase'
 
 
 const SeatSelector = () => {
-  var docRef = db.collection("theater").doc("8P1C3WV6q20zlj6puAXV").collection("room").doc("KrIzFrQ6eMasaga1uNYM").collection("seat");
+  var seatRef = db.collection("theater").doc("8zbFBYEdH6lL6ULWpfLv").collection("room").doc("KrIzFrQ6eMasaga1uNYM").collection("seat");
   
-  docRef
+  seatRef
     .where("status", "==", "occupied")
     .get()
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data().name);
             $(`#${doc.data().name}`).addClass('occupied');
         });
     })

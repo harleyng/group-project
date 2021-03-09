@@ -52,7 +52,7 @@ const Booking = () => {
         seatPrice: seatPrice
       })
     });
-    localStorage.setItem("selectesSeats", JSON.stringify(seatsInfo));
+    localStorage.setItem("selectedSeats", JSON.stringify(seatsInfo));
   
     // setcount(totalSelectedSeats.length);
     settotal(selectedSeats.length * 60 + selectedSweetboxs.length * 75); // seatPrice = 60 & sweetboxPrice = 75

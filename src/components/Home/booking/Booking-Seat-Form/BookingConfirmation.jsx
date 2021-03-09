@@ -1,9 +1,39 @@
 import { Height } from '@material-ui/icons'
 import React, { useEffect } from 'react'
 import TicketShapeBackground from '../../../../assets/img/seat-confirmation-background.png' 
+import { db }  from '../../../../backend/firebase'
+import Swal from 'sweetalert2'
+
 const BookingConfirmation = (props) => {
   const {count, total} = props;
+  var seatRef = db.collection("theater").doc("8zbFBYEdH6lL6ULWpfLv").collection("room").doc("KrIzFrQ6eMasaga1uNYM").collection("seat");
+  var selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
 
+  const handleSeatBooking = () => {
+    for (let i = 0; i < selectedSeats.length; i++) {
+      const seatName = selectedSeats[i].seatRow + selectedSeats[i].seatIndex;
+      console.log(typeof seatName);
+      seatRef
+        .where("name", "==", seatName)
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            doc.ref.update({
+              status: "occupied"
+            })
+            Swal.fire({
+              title: 'Your booking was successful',
+              text: 'You have booked ' + selectedSeats.length + ' seats',
+              icon: 'success',
+              didClose: window.location.reload()
+            })
+          });
+      })
+      .catch((error) => {
+          console.log("Error getting documents: ", error);
+      });
+    }
+  }
   return (
     <div id="booking-confirmation-container">
       <div id="booking-confirmation-title" className="uppercase text-center">shopping cart</div>
@@ -36,9 +66,9 @@ const BookingConfirmation = (props) => {
                 <td>{total}$</td>
               </tr>
               <tr>
-                <td><button className="seat-confirmation-button">NO. 169</button></td>
+                <td><button className="seat-confirmation-button">Tick</button></td>
                 <td colSpan="2"></td>
-                <td><button className="seat-confirmation-button">Next</button></td>
+                <td><button className="seat-confirmation-button" onClick={handleSeatBooking}>Confirm</button></td>
               </tr>
             </tfoot>
         </table>
