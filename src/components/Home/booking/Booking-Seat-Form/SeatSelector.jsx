@@ -252,7 +252,7 @@ const SeatSelector = () => {
           <span>Selected</span>
         </li>
         <li>
-          <div className="seat"></div>
+          <div className="seat occupied"></div>
           <span>Occupied</span>
         </li>
         <li>

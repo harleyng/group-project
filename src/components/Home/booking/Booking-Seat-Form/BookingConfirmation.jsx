@@ -9,7 +9,37 @@ const BookingConfirmation = (props) => {
   var seatRef = db.collection("theater").doc("8zbFBYEdH6lL6ULWpfLv").collection("room").doc("KrIzFrQ6eMasaga1uNYM").collection("seat");
   var selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
 
+  const handleResetSeat = () => {
+    seatRef
+    .where("status", "==", "occupied")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        doc.ref.update({
+          status: "available"
+        })
+        Swal.fire({
+          title: 'You have reset ALL seats',
+          icon: 'success',
+          didClose: windowReload
+        })
+      });
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+  }
+
   const handleSeatBooking = () => {
+    // for (let i = 1; i < 6; i++) {
+    //   console.log(i)
+    //   seatRef.add({
+    //     name: "L"+i,
+    //     status: "available",
+    //     type: "sweetbox"
+    //   })
+    // }
+
     for (let i = 0; i < selectedSeats.length; i++) {
       const seatName = selectedSeats[i].seatRow + selectedSeats[i].seatIndex;
       console.log(typeof seatName);
@@ -22,10 +52,10 @@ const BookingConfirmation = (props) => {
               status: "occupied"
             })
             Swal.fire({
-              title: 'Your booking was successful',
-              text: 'You have booked ' + selectedSeats.length + ' seats',
+              title: 'You have booked ' + selectedSeats.length + ' seats',
+              text: 'Your billing is ' + total + '$',
               icon: 'success',
-              didClose: window.location.reload()
+              didClose: windowReload
             })
           });
       })
@@ -33,6 +63,10 @@ const BookingConfirmation = (props) => {
           console.log("Error getting documents: ", error);
       });
     }
+  }
+
+  const windowReload = () => {
+    window.location.reload();
   }
   return (
     <div id="booking-confirmation-container">
@@ -66,7 +100,7 @@ const BookingConfirmation = (props) => {
                 <td>{total}$</td>
               </tr>
               <tr>
-                <td><button className="seat-confirmation-button">Tick</button></td>
+                <td><button className="seat-confirmation-button" onClick={handleResetSeat}>Reset</button></td>
                 <td colSpan="2"></td>
                 <td><button className="seat-confirmation-button" onClick={handleSeatBooking}>Confirm</button></td>
               </tr>
