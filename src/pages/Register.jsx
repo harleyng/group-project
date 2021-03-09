@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { isEmail, isEmpty, isLength, isContainWhiteSpace, isPasswordMatch, isPhone, isName } from '..//validator.js';
 import Swal from 'sweetalert2'
 import fire from '../backend/firebase'
-// import { db } from '../backend/firebase'
+import { db } from '../backend/firebase'
 
 import firebase from 'firebase'
 
@@ -15,7 +15,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-const db = firebase.firestore();
+// const db = firebase.firestore();
 
 const Register = () => {
   const [formData, setformData] = useState({firstname: "", lastname: "", username: "", phone: "", email: "", password: "", repassword: "", DOB: "2020-01-01"})

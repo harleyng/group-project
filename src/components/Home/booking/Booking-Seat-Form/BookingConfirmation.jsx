@@ -25,7 +25,7 @@ const BookingConfirmation = (props) => {
             <tr>
               <th>Sr No.</th>
               <th>Row</th>
-              <th>Seat</th>
+              <th>Index</th>
               <th>Price</th>
             </tr>
             <tbody className="mt-3"></tbody>
