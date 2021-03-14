@@ -7,7 +7,7 @@ import { db } from '../../../../backend/firebase'
 const UpCommingMovie = () => {
   const [movieList, setmovieList] = useState([])
   useEffect(() => {
-    console.log("upcomming fetch")
+    // console.log("upcomming fetch")
     fetchMovie()
   }, [])
 

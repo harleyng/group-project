@@ -12,7 +12,7 @@ const PosterSlider = () => {
   const [movieList, setmovieList] = useState([])
   useEffect(() => {
     fetchMovie()
-    console.log(movieList)
+    // console.log(movieList)
   }, [])
 
   const fetchMovie = () => {

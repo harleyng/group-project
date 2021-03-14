@@ -8,7 +8,7 @@ const OnShowingMovie = () => {
   const [movieList, setmovieList] = useState([])
   useEffect(() => {
     fetchMovie()
-    console.log("onshowing fetch")
+    // console.log("onshowing fetch")
   }, [])
 
   const fetchMovie = () => {

@@ -1,13 +1,41 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import MovieInfo from '../components/Detail-Movie/MovieInfo'
 import AnotherMovie from '../components/Detail-Movie/AnotherMovie'
-const DetailMovie = () => {
+
+import { db } from '../backend/firebase'
+
+const DetailMovie = props => {
+    const [movieInfo, setmovieInfo] = useState({})
+    useEffect(() => {
+      console.log(movieInfo)
+      fetchMovieInfo()
+    }, [movieInfo])
+  
+    const fetchMovieInfo = () => {
+      db.collection("movie").where("id", "==", props.match.params.id)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            if (Object.keys(movieInfo).length == 0) {
+              setmovieInfo(doc.data())
+              console.log('hi')
+            }
+        });
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+    }
     return (
        <div id="movie_container">
-           <div id="movie_thumnail">
+           <div id="movie_thumnail" 
+           style={{
+                backgroundImage: `url(${movieInfo.LgImage})`
+           }}>
            </div>
            <div id="main">
-            <MovieInfo/>
+            <MovieInfo id={props.match.params.id}/>
            </div>
            <div id="another-movie">
             <AnotherMovie/>
