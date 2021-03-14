@@ -7,7 +7,7 @@ import { db } from '../../../../backend/firebase'
 const UpCommingMovie = () => {
   const [movieList, setmovieList] = useState([])
   useEffect(() => {
-    console.log("fetch")
+    console.log("upcomming fetch")
     fetchMovie()
   }, [])
 
@@ -34,9 +34,39 @@ const UpCommingMovie = () => {
     // Basic Settings 
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
-    draggable: false
+    draggable: false,
+    responsive: [
+      {
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: 4,
+          initialSlide: 4
+        }
+      },
+      {
+        breakpoint: 1140,
+        settings: {
+          slidesToShow: 3,
+          initialSlide: 3
+        }
+      },
+      {
+        breakpoint: 720,
+        settings: {
+          slidesToShow: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          initialSlide: 1
+        }
+      }
+    ]
   };
   return (
     <div id ="upcomming-movie" className="movie-slider">

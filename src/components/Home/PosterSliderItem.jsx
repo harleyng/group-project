@@ -31,13 +31,7 @@ const PosterSliderItem = props => {
           <h1 className="title uppercase">{props.title}</h1>
           <div className="poster-info">
             <div className="genre capitalize">
-              {props.genre.map((value, index) => {
-                if (index + 1 !== props.stars.length) {
-                  return value + ", "
-                } else {
-                  return value
-                }
-              })}  
+              {props.genre}
             </div> 
             <div className="release-date">
               <span className="mr-2"><BiCalendar/></span>  
@@ -45,7 +39,7 @@ const PosterSliderItem = props => {
             </div>
             <div className="duration">
               <span className="mr-2"><AiOutlineClockCircle/></span>  
-              <span>{props.duration} Min</span>
+              <span>{props.duration} Mins</span>
             </div>
           </div>
           <div className="poster-info">
@@ -78,13 +72,7 @@ const PosterSliderItem = props => {
               <tr>
                 <td className="stars yellow-text">Stars:</td>
                 <td className="capitalize">
-                  {props.stars.map((value, index) => {
-                    if (index + 1 !== props.stars.length) {
-                      return value + ", "
-                    } else {
-                      return value
-                    }
-                  })}  
+                  {props.stars}  
                 </td>
               </tr>
             </tbody>

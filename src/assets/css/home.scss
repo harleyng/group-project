@@ -17,7 +17,7 @@
       &::before {
         content: '';
         width: 100%;
-        height: 100%;
+        height: 100.1%;
         position: absolute;
         top: 0;
         background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.41) 10.94%, rgba(0, 0, 0, 0.1) 23.44%, rgba(0, 0, 0, 0) 27.08%, rgba(0, 0, 0, 0) 60.42%, rgba(0, 0, 0, 0.3) 69.27%, rgba(0, 0, 0, 0.7) 84.37%, #000000 100%), rgba(0, 0, 0, 0.3);
@@ -34,8 +34,9 @@
           width: 35%;
         }
         .overall {
+          width: 45%;
           .title {
-            font-size: $container-min-height/6;
+            font-size: $container-min-height/9;
           }
           .poster-info {
             margin-bottom: 20px;
@@ -145,9 +146,10 @@
     .booking-slider {
       $padding-top-booking-slider: 300px;
       padding-top: $padding-top-booking-slider;
-      .slick-slider:not(.movie-slider ~ .slick-slider) {
+      .slick-slider {
         .slick-list {
           .slick-track {
+            transform: translate3D(0, 0, 0) !important;
             .slick-slide {
               display: block;
               // opacity: 1;

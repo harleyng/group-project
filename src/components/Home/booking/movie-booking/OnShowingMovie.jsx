@@ -8,7 +8,7 @@ const OnShowingMovie = () => {
   const [movieList, setmovieList] = useState([])
   useEffect(() => {
     fetchMovie()
-    console.log(movieList)
+    console.log("onshowing fetch")
   }, [])
 
   const fetchMovie = () => {
@@ -32,9 +32,40 @@ const OnShowingMovie = () => {
     // Basic Settings 
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
-    draggable: false
+    initialSlide: 5,
+    draggable: false,
+    responsive: [
+      {
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: 4,
+          initialSlide: 4
+        }
+      },
+      {
+        breakpoint: 1140,
+        settings: {
+          slidesToShow: 3,
+          initialSlide: 3
+        }
+      },
+      {
+        breakpoint: 720,
+        settings: {
+          slidesToShow: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          initialSlide: 1
+        }
+      }
+    ]
   };
   return (
     <div id ="onshowing-movie" className="movie-slider">
