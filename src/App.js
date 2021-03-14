@@ -29,7 +29,7 @@ function App() {
               <Route exact path="/" component={Home}/>
               <Route exact path="/login" component={Login}/>
               <Route exact path="/register" component={Register}/>
-              <Route exact path="/movie" component={DetailMovie}/>
+              <Route exact path="/movie/:id" component={DetailMovie}/>
               <Route exact path="/booking" component={Booking}/>
             </Switch>
         </BrowserRouter>
