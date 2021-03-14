@@ -17,6 +17,7 @@ const BookingSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
+    draggable: false,
 
     // Animation
     fade: true,

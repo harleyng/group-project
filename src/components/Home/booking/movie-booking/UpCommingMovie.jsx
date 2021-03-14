@@ -1,83 +1,35 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Slider from "react-slick";
 
 import UpCommingMovieItem from './UpCommingMovieItem'
-
-import img from '../../../../assets/img/movie-slider-bg.jpg'
+import { db } from '../../../../backend/firebase'
 
 const UpCommingMovie = () => {
-  const movieList = [
-    {
-      id: 1,
-      title: 'wonder woman1',
-      img: img,
-      genre: ['action', 'adventure'],
-      releaseDate: '23 Feburary',
-      releaseYear: '2017',
-      duration: 141,
-      ratingIMDB: 7.4,
-      ageRating: 'PG-13',
-      director: 'Patty Jenkins',
-      stars: ['Gal Gadot', 'Chris Pine'],
-      desc: 'When a pilot crashes and tells of conflict in the outside world, Diana, an Amazonian warrior in training, leaves home to fight a war, discovering her full powers and true destiny.'
-    },
-    {
-      id: 2,
-      title: 'wonder woman2',
-      img: img,
-      genre: ['action', 'adventure'],
-      releaseDate: '23 Feburary',
-      releaseYear: '2017',
-      duration: 141,
-      ratingIMDB: 7.4,
-      ageRating: 'PG-13',
-      director: 'Patty Jenkins',
-      stars: ['Gal Gadot', 'Chris Pine'],
-      desc: 'When a pilot crashes and tells of conflict in the outside world, Diana, an Amazonian warrior in training, leaves home to fight a war, discovering her full powers and true destiny.'
-    },
-    {
-      id: 3,
-      title: 'wonder woman3',
-      img: img,
-      genre: ['action', 'adventure'],
-      releaseDate: '23 Feburary',
-      releaseYear: '2017',
-      duration: 141,
-      ratingIMDB: 7.4,
-      ageRating: 'PG-13',
-      director: 'Patty Jenkins',
-      stars: ['Gal Gadot', 'Chris Pine'],
-      desc: 'When a pilot crashes and tells of conflict in the outside world, Diana, an Amazonian warrior in training, leaves home to fight a war, discovering her full powers and true destiny.'
-    },
-    {
-      id: 4,
-      title: 'wonder woman4',
-      img: img,
-      genre: ['action', 'adventure'],
-      releaseDate: '23 Feburary',
-      releaseYear: '2017',
-      duration: 141,
-      ratingIMDB: 7.4,
-      ageRating: 'PG-13',
-      director: 'Patty Jenkins',
-      stars: ['Gal Gadot', 'Chris Pine'],
-      desc: 'When a pilot crashes and tells of conflict in the outside world, Diana, an Amazonian warrior in training, leaves home to fight a war, discovering her full powers and true destiny.'
-    },
-    {
-      id: 5,
-      title: 'wonder woman5',
-      img: img,
-      genre: ['action', 'adventure'],
-      releaseDate: '23 Feburary',
-      releaseYear: '2017',
-      duration: 141,
-      ratingIMDB: 7.4,
-      ageRating: 'PG-13',
-      director: 'Patty Jenkins',
-      stars: ['Gal Gadot', 'Chris Pine'],
-      desc: 'When a pilot crashes and tells of conflict in the outside world, Diana, an Amazonian warrior in training, leaves home to fight a war, discovering her full powers and true destiny.'
-    },
-  ]
+  const [movieList, setmovieList] = useState([])
+  useEffect(() => {
+    console.log("fetch")
+    fetchMovie()
+  }, [])
+
+  const fetchMovie = () => {
+    db.collection("movie").where("onShowing", "==", false)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          setmovieList(oldArray => {
+            if  (movieList.includes(doc.data()) == false) {
+              return [...oldArray, doc.data()]
+            } 
+          })
+      });
+    })
+    .catch((error) => {
+      console.log("Error getting documents: ", error);
+    });
+  }
+
+  // localStorage.setItem("movieList", JSON.stringify())
   const settings = {
     // Basic Settings 
     infinite: false,
@@ -95,7 +47,7 @@ const UpCommingMovie = () => {
             <UpCommingMovieItem 
               id = {item.id}
               title = {item.title}
-              img = {item.img}
+              img = {item.SmImage}
               genre = {item.genre}
               releaseDate = {item.releaseDate}
               releaseYear = {item.releaseYear}
