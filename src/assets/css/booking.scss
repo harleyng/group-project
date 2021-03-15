@@ -77,13 +77,13 @@
 
 .bookingContainer {
   background: {
-    image: url('../img/poster-slider-background.jpg');
+    // image: url('../img/poster-slider-background.jpg');
     repeat: no-repeat;
     size: cover;
     position: center;
   }
   position: relative;
-  padding: $regular-distance-between-block*3 $regular-distance-between-block $regular-distance-between-block*2;
+  padding: $regular-distance-between-block*3.5 $regular-distance-between-block $regular-distance-between-block*2;
   &::after {
     content: '';
     position: absolute;

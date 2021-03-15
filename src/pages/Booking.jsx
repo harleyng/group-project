@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import $ from 'jquery'
 import BookingConfirmation from '../components/Home/booking/Booking-Seat-Form/BookingConfirmation'
 import SeatSelector from '../components/Home/booking/Booking-Seat-Form/SeatSelector'
+import { db } from '../backend/firebase'
 
 const Booking = props => {
+  const [movieInfo, setmovieInfo] = useState({})
   const selectedTheaterId = props.match.params.theaterId;
   const selectedRoomId = props.match.params.roomId;
   // Seats Information
@@ -13,6 +15,29 @@ const Booking = props => {
   // const [count, setcount] = useState(0)
   const [total, settotal] = useState(0)
   
+
+  useEffect(() => {
+    fetchMovieInfo();
+    window.addEventListener('click', (event) => {handleSeatSelect(event)});
+    return () => {
+      window.removeEventListener('click', () => {console.log('remove')});
+    }
+  }, [])
+
+  const fetchMovieInfo = () => {
+    db.collection("movie").where("id", "==", props.match.params.movieId)
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            if (Object.keys(movieInfo).length == 0) {
+                setmovieInfo(doc.data())
+            }
+            });
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+  }
   // Function change selected seat UI
   const handleSeatSelect = (event) => {
     if (
@@ -75,14 +100,11 @@ const Booking = props => {
     $(seats).appendTo('.seat-booked-info table tbody')
   }
 
-  useEffect(() => {
-    window.addEventListener('click', (event) => {handleSeatSelect(event)});
-    return () => {
-      window.removeEventListener('click', () => {console.log('remove')});
-    }
-  }, [])
   return (
-    <div className="bookingContainer d-flex">
+    <div className="bookingContainer d-flex" style={{
+          backgroundImage: `url(${movieInfo.LgImage})`
+    }}>
+      <h1 style={{position: 'absolute', zIndex: '1', left: '50%', top: '8%', transform: 'translateX(-50%)'}}>{movieInfo.title}</h1>
       <div className="bookingContent row">
         <div className="col-8">
           <SeatSelector theaterId={selectedTheaterId} roomId={selectedRoomId}/>
