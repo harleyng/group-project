@@ -166,6 +166,12 @@
         }
     }
 }
+.clickable {
+    pointer-events: auto;
+}
+.unclickable {
+    pointer-events: none; 
+}
       
     
 

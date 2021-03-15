@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-// import ActorImg from '../../assets/img/gal_gadot.png'
+import $ from 'jquery'
 
 // Material-UI
 import { withStyles } from '@material-ui/core/styles';
@@ -17,12 +17,23 @@ const MovieInfo = props => {
     const [movieInfo, setmovieInfo] = useState({})
     const [cityList, setcityList] = useState([])
     const [theaterList, settheaterList] = useState([])
+    const [showList, setshowList] = useState([])
+    const [dayList, setdayList] = useState([])
+    const [selectedTheaterId, setselectedTheaterId] = useState(null)
+
     const cityRef = db.collection('city')
     const theaterRef = db.collection('theater')
+    const showRef = db.collection('showtime')
+
+    let current = new Date();
+    let currentDate = current.getDate();
+    let currentMonth = current.getMonth() + 1;
+    let currentYear = current.getFullYear();
+
 
     useEffect(() => {
-        fetchMovieInfo()
-        fetchCity()
+        fetchMovieInfo();
+        fetchCity();
     }, [])
 
     const fetchMovieInfo = () => {
@@ -54,11 +65,9 @@ const MovieInfo = props => {
             });
     }
     const handleCitySelect = (e) => {
-        console.log('city selected')
         theaterRef.where("city_id", "==", e.target.value)
         .get()
         .then((querySnapshot) => {
-            console.log(querySnapshot.docs)
             querySnapshot.forEach((doc) => {
                 if  (theaterList.includes(doc.data()) == false) {
                     settheaterList(oldArray => [...oldArray, doc.data()])
@@ -68,6 +77,70 @@ const MovieInfo = props => {
         .catch((error) => {
             console.log("Error getting documents: ", error);
             });
+
+        $('#theaterSelector').addClass('clickable');
+    }
+    const handleTheaterSelect = (e) => {
+        console.log(e.target.value)
+        theaterRef.where("id", "==", e.target.value)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                setselectedTheaterId(doc.id);
+            })
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+            });
+
+        $('#DateSelector').addClass('clickable');
+    }
+    const handleDateSelect = (e) => {
+        let selectedDate;
+        if (currentDate <= e.target.value) {
+            selectedDate = `${e.target.value}/${currentMonth}/${currentYear}`;
+        } else {
+            if (currentMonth == 12) {
+                selectedDate = `${currentDate}/1/${currentYear + 1}`;
+            } else {
+                selectedDate = `${currentDate}/${currentMonth + 1}/${currentYear}`;
+            }
+        }
+
+        showRef
+        .where("movie_id", "==", movieInfo.id)
+        .where("date", "==", selectedDate)
+        .where("theater_id", "==", selectedTheaterId)
+        .get()
+        .then((querySnapshot) => {
+            setshowList([])
+            querySnapshot.forEach((doc) => {
+                if  (showList.includes(doc.data()) == false) {
+                    console.log('false')
+                    setshowList(oldArray => [...oldArray, doc.data()])
+                }
+            })
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+            });
+
+        $('.detail__listOfDay--item').removeClass("active")
+        e.target.className += " active"
+    }
+    const generateDate = () => {
+        let current = new Date();
+        let dayList = [];
+        const weekDay = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        // Starting Monday not Sunday
+        current.setDate((current.getDate() - current.getDay() +1));
+        for (let i = 0; i < 14; i++) {
+            let today = {"date": current.getDate(), "day": current.getDay()}
+            dayList.push(<li class="detail__listOfDay--item " value={today.date} onClick={handleDateSelect}><p class="dayOfWeek">{today.date}</p><p class="date">{weekDay[today.day]}</p></li>)
+            current.setDate(current.getDate() +1);
+        }
+        // setdayList(dayList);
+        return dayList; 
     }
     const useStyles = makeStyles((theme) => ({
         formControl: {
@@ -91,7 +164,7 @@ const MovieInfo = props => {
                 <div className="movieThumbnail col-3 ">
                     <div className="movieThumbnail_img" ><a href="#"><img className="movie_img" src={movieInfo.SmImage}/></a></div>
                     {/* <div className="like"><button className="like-btn">LIKES</button></div> */}
-                    <div className="booking"><button className="booking-btn">BOOKING</button></div>
+                    {/* <div className="booking"><button className="booking-btn">BOOKING</button></div> */}
                 </div>
 
                 <div className="movieDetail col-9">
@@ -114,9 +187,9 @@ const MovieInfo = props => {
                                         </Select>
                                     </FormControl>  
 
-                                    <FormControl className={classes.formControl}>
+                                    <FormControl id="theaterSelector" className={classes.formControl}>
                                         <InputLabel htmlFor="grouped-native-select" style={{color: "wheat"}}>Theater</InputLabel>
-                                        <Select native defaultValue="" id="grouped-native-select" style={{color: "wheat"}}>
+                                        <Select native defaultValue="" id="grouped-native-select" style={{color: "wheat"}} onChange={handleTheaterSelect}>
                                             <option aria-label="None" value="" />
                                             {theaterList.map(theater => (
                                                 <React.Fragment key = {theater.id}>
@@ -128,48 +201,16 @@ const MovieInfo = props => {
                                 </div>
 
                                 <div className="listOfDay col-9">
-                                    <ul class="detail__listOfDay">
-                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">01</p><p class="date">Mon</p></li>
-                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">02</p><p class="date">Tue</p></li>
-                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">03</p><p class="date">Wed</p></li>
-                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">04</p><p class="date">Thurs</p></li>
-                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">05</p><p class="date">Fri</p></li>
-                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">06</p><p class="date">Sat</p></li>
-                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">07</p><p class="date">Sun</p></li>
-                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">08</p><p class="date">Mon</p></li>
-                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">09</p><p class="date">Tue</p></li>
-                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">10</p><p class="date">Wed</p></li>
-                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">11</p><p class="date">Thurs</p></li>
-                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">12</p><p class="date">Fri</p></li>
-                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">13</p><p class="date">Sat</p></li>
-                                        <li class="detail__listOfDay--item "><p class="dayOfWeek">14</p><p class="date">Sun</p></li>
+                                    <ul id="DateSelector" className="detail__listOfDay">
+                                        {generateDate()}
                                     </ul>
                                     <div className="detail-showlist row">
-                                        <div className="button-time">
-                                            <Button variant="contained">8:30</Button>
-                                        </div>
-                                        <div className="button-time">
-                                            <Button variant="contained">10:30</Button>
-                                        </div>
-                                        <div className="button-time">
-                                            <Button variant="contained">12:30</Button>
-                                        </div>
-                                        <div className="button-time">
-                                            <Button variant="contained">14:30</Button>
-                                        </div>
-                                        <div className="button-time">
-                                            <Button variant="contained">16:30</Button>
-                                        </div>
-                                        <div className="button-time">
-                                            <Button variant="contained">20:30</Button>
-                                        </div>
-                                        <div className="button-time">
-                                            <Button variant="contained">22:30</Button>
-                                        </div>
-                                        <div className="button-time">
-                                            <Button variant="contained">23:30</Button>
-                                        </div>
-                                    </div> 
+                                            {showList.map(show => (
+                                                <div className="button-time">
+                                                    <Button variant="contained">{show.startTime}</Button>
+                                            </div>
+                                            ))}
+                                    </div>
                                 </div>       
                             </div>
                             
