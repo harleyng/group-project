@@ -14,28 +14,43 @@ import { yellow } from '@material-ui/core/colors';
 
 import { db } from '../../backend/firebase'
 const MovieInfo = props => {
-  const [movieInfo, setmovieInfo] = useState({})
-  useEffect(() => {
-    console.log(movieInfo)
-    fetchMovieInfo()
-  }, [movieInfo])
+    const [movieInfo, setmovieInfo] = useState({})
+    const [cityList, setcityList] = useState([])
+    const [theaterList, settheaterList] = useState([])
+    const cityRef = db.collection('city')
 
-  const fetchMovieInfo = () => {
-    db.collection("movie").where("id", "==", props.id)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          if (Object.keys(movieInfo).length == 0) {
-            setmovieInfo(doc.data())
-            console.log('hi')
-          }
-      });
-    })
-    .catch((error) => {
-      console.log("Error getting documents: ", error);
-    });
-  }
+
+    useEffect(() => {
+        fetchMovieInfo()
+        fetchCity()
+    }, [])
+
+    const fetchMovieInfo = () => {
+        db.collection("movie").where("id", "===", props.id)
+        .get()
+        .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            if (Object.keys(movieInfo).length === 0) {
+                setmovieInfo(doc.data())
+            }
+        });
+        })
+        .catch((error) => {
+        console.log("Error getting documents: ", error);
+        });
+    }
+    const fetchCity = () => {
+        cityRef
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+
+                if  (cityList.includes(doc.data()) == false) {
+                    setcityList(oldArray => [...oldArray, doc.data()])
+                }
+            })
+        })
+    }
     const useStyles = makeStyles((theme) => ({
         formControl: {
           margin: theme.spacing(1),
@@ -51,12 +66,13 @@ const MovieInfo = props => {
           color: yellow.A200, //#ffff00
         }
       })(Rating);
+    
     return (
         <div className="MovieInfo">
             <div className="detail_content row">
-                <div className="movieThumbnail col-3 sticky-top">
+                <div className="movieThumbnail col-3 ">
                     <div className="movieThumbnail_img" ><a href="#"><img className="movie_img" src={movieInfo.SmImage}/></a></div>
-                    <div className="like"><button className="like-btn">LIKES</button></div>
+                    {/* <div className="like"><button className="like-btn">LIKES</button></div> */}
                     <div className="booking"><button className="booking-btn">BOOKING</button></div>
                 </div>
 
@@ -72,9 +88,14 @@ const MovieInfo = props => {
                                         <InputLabel htmlFor="grouped-native-select" style={{color: "wheat"}}>City</InputLabel>
                                         <Select native defaultValue="" id="grouped-native-select" style={{color: "wheat"}}>
                                             <option aria-label="None" value="" />
-                                            <option value={1}>TICKETLAND HA NOI</option>
+                                            {cityList.map(city => (
+                                                <React.Fragment key = {city.id}>
+                                                    <option value={city.id}>{city.name}</option>
+                                                </React.Fragment>
+                                            ))}
+                                            {/* <option value={1}>TICKETLAND HA NOI</option>
                                             <option value={2}>TICKETLAND HO CHI MINH</option>
-                                            <option value={3}>TICKETLAND DA NANG</option>
+                                            <option value={3}>TICKETLAND DA NANG</option> */}
                                         </Select>
                                     </FormControl>  
 
@@ -214,7 +235,7 @@ const MovieInfo = props => {
 
                     <div className="trailer">
                         <div className="trailer_vid">
-                            <iframe width="800" height="400" src={movieInfo.trailer} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="800" height="500" src={movieInfo.trailer} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                     </div>
 

@@ -7,7 +7,6 @@ import { db } from '../backend/firebase'
 const DetailMovie = props => {
     const [movieInfo, setmovieInfo] = useState({})
     useEffect(() => {
-      console.log(movieInfo)
       fetchMovieInfo()
     }, [movieInfo])
   
@@ -19,7 +18,6 @@ const DetailMovie = props => {
             // doc.data() is never undefined for query doc snapshots
             if (Object.keys(movieInfo).length == 0) {
               setmovieInfo(doc.data())
-              console.log('hi')
             }
         });
       })
