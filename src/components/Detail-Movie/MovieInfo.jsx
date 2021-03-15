@@ -18,6 +18,7 @@ const MovieInfo = props => {
     const [cityList, setcityList] = useState([])
     const [theaterList, settheaterList] = useState([])
     const cityRef = db.collection('city')
+    const theaterRef = db.collection('theater')
 
     useEffect(() => {
         fetchMovieInfo()
@@ -28,12 +29,11 @@ const MovieInfo = props => {
         db.collection("movie").where("id", "==", props.id)
         .get()
         .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            console.log(doc.data())
-            if (Object.keys(movieInfo).length == 0) {
-                setmovieInfo(doc.data())
-            }
-            });
+            querySnapshot.forEach((doc) => {
+                if (Object.keys(movieInfo).length == 0) {
+                    setmovieInfo(doc.data())
+                }
+                });
         })
         .catch((error) => {
             console.log("Error getting documents: ", error);
@@ -44,9 +44,24 @@ const MovieInfo = props => {
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-
                 if  (cityList.includes(doc.data()) == false) {
                     setcityList(oldArray => [...oldArray, doc.data()])
+                }
+            })
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+            });
+    }
+    const handleCitySelect = (e) => {
+        console.log('city selected')
+        theaterRef.where("city_id", "==", e.target.value)
+        .get()
+        .then((querySnapshot) => {
+            console.log(querySnapshot.docs)
+            querySnapshot.forEach((doc) => {
+                if  (theaterList.includes(doc.data()) == false) {
+                    settheaterList(oldArray => [...oldArray, doc.data()])
                 }
             })
         })
@@ -89,7 +104,7 @@ const MovieInfo = props => {
                                 <div className="detail col-3">
                                     <FormControl className={classes.formControl}>
                                         <InputLabel htmlFor="grouped-native-select" style={{color: "wheat"}}>City</InputLabel>
-                                        <Select native defaultValue="" id="grouped-native-select" style={{color: "wheat"}}>
+                                        <Select native defaultValue="" id="grouped-native-select" style={{color: "wheat"}} onChange={handleCitySelect}>
                                             <option aria-label="None" value="" />
                                             {cityList.map(city => (
                                                 <React.Fragment key = {city.id}>
@@ -100,12 +115,14 @@ const MovieInfo = props => {
                                     </FormControl>  
 
                                     <FormControl className={classes.formControl}>
-                                        <InputLabel htmlFor="grouped-native-select" style={{color: "wheat"}}>Street</InputLabel>
+                                        <InputLabel htmlFor="grouped-native-select" style={{color: "wheat"}}>Theater</InputLabel>
                                         <Select native defaultValue="" id="grouped-native-select" style={{color: "wheat"}}>
                                             <option aria-label="None" value="" />
-                                            <option value={1}>TICKETLAND DAO TAN</option>
-                                            <option value={2}>TICKETLAND HOANG QUOC VIET</option>
-                                            <option value={3}>TICKETLAND THANH CONG</option>
+                                            {theaterList.map(theater => (
+                                                <React.Fragment key = {theater.id}>
+                                                    <option value={theater.id}>{theater.name}</option>
+                                                </React.Fragment>
+                                            ))}
                                         </Select>
                                     </FormControl>
                                 </div>
