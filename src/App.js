@@ -29,8 +29,8 @@ function App() {
               <Route exact path="/" component={Home}/>
               <Route exact path="/login" component={Login}/>
               <Route exact path="/register" component={Register}/>
-              <Route exact path="/movie/:id" component={DetailMovie}/>
-              <Route exact path="/booking" component={Booking}/>
+              <Route exact path="/movie/:movieId" component={DetailMovie}/>
+              <Route exact path="/movie/:movieId/booking/:theaterId/:roomId" component={Booking}/>
             </Switch>
         </BrowserRouter>
       </MasterLayout>

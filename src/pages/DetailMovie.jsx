@@ -11,7 +11,7 @@ const DetailMovie = props => {
     }, [movieInfo])
   
     const fetchMovieInfo = () => {
-      db.collection("movie").where("id", "==", props.match.params.id)
+      db.collection("movie").where("id", "==", props.match.params.movieId)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -33,7 +33,7 @@ const DetailMovie = props => {
            }}>
            </div>
            <div id="main">
-            <MovieInfo id={props.match.params.id}/>
+            <MovieInfo id={props.match.params.movieId}/>
            </div>
            <div id="another-movie">
             <AnotherMovie/>

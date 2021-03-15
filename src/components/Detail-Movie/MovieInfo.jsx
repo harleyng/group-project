@@ -129,7 +129,7 @@ const MovieInfo = props => {
         e.target.className += " active"
     }
     const handleShowSelect = (e) => {
-        window.location.href = `${e.target.value}`;
+        window.location.href = `${movieInfo.id}/booking/${selectedTheaterId}/${e.target.value}`;
     }
     const generateDate = () => {
         let current = new Date();

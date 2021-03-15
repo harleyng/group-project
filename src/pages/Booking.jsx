@@ -3,7 +3,9 @@ import $ from 'jquery'
 import BookingConfirmation from '../components/Home/booking/Booking-Seat-Form/BookingConfirmation'
 import SeatSelector from '../components/Home/booking/Booking-Seat-Form/SeatSelector'
 
-const Booking = () => {
+const Booking = props => {
+  const selectedTheaterId = props.match.params.theaterId;
+  const selectedRoomId = props.match.params.roomId;
   // Seats Information
   const rowTitles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
   // const rowSeatNumber = [10, 12, 12, 14, 14, 14, 14, 14, 14, 14, 12, 5];
@@ -83,7 +85,7 @@ const Booking = () => {
     <div className="bookingContainer d-flex">
       <div className="bookingContent row">
         <div className="col-8">
-          <SeatSelector/>
+          <SeatSelector theaterId={selectedTheaterId} roomId={selectedRoomId}/>
         </div>
         <div className="col-4">
           <BookingConfirmation total={total} render={renderSeatSelect}/>

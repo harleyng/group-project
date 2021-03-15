@@ -3,8 +3,11 @@ import $ from 'jquery'
 import { db }  from '../../../../backend/firebase'
 
 
-const SeatSelector = () => {
-  var seatRef = db.collection("theater").doc("8zbFBYEdH6lL6ULWpfLv").collection("room").doc("KrIzFrQ6eMasaga1uNYM").collection("seat");
+const SeatSelector = props => {
+  console.log(props)
+  const selectedTheaterId = props.theaterId;
+  const selectedRoomId = props.roomId;
+  var seatRef = db.collection("theater").doc(selectedTheaterId).collection("room").doc(selectedRoomId).collection("seat");
   
   seatRef
     .where("status", "==", "occupied")
@@ -244,19 +247,19 @@ const SeatSelector = () => {
       </div>
       <ul className="showcase">
         <li>
-          <div className="seat"></div>
+          <div className="seat unclickable"></div>
           <span>Available</span>
         </li>
         <li>
-          <div className="seat selected"></div>
+          <div className="seat selected unclickable"></div>
           <span>Selected</span>
         </li>
         <li>
-          <div className="seat occupied"></div>
+          <div className="seat occupied unclickable"></div>
           <span>Occupied</span>
         </li>
         <li>
-          <div className="seat sweetbox"></div>
+          <div className="seat sweetbox unclickable"></div>
           <span>Sweetbox</span>
         </li>
       </ul>
