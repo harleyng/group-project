@@ -19,24 +19,24 @@ const MovieInfo = props => {
     const [theaterList, settheaterList] = useState([])
     const cityRef = db.collection('city')
 
-
     useEffect(() => {
         fetchMovieInfo()
         fetchCity()
     }, [])
 
     const fetchMovieInfo = () => {
-        db.collection("movie").where("id", "===", props.id)
+        db.collection("movie").where("id", "==", props.id)
         .get()
         .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            if (Object.keys(movieInfo).length === 0) {
+            console.log(doc.data())
+            if (Object.keys(movieInfo).length == 0) {
                 setmovieInfo(doc.data())
             }
-        });
+            });
         })
         .catch((error) => {
-        console.log("Error getting documents: ", error);
+            console.log("Error getting documents: ", error);
         });
     }
     const fetchCity = () => {
@@ -50,6 +50,9 @@ const MovieInfo = props => {
                 }
             })
         })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+            });
     }
     const useStyles = makeStyles((theme) => ({
         formControl: {
@@ -93,9 +96,6 @@ const MovieInfo = props => {
                                                     <option value={city.id}>{city.name}</option>
                                                 </React.Fragment>
                                             ))}
-                                            {/* <option value={1}>TICKETLAND HA NOI</option>
-                                            <option value={2}>TICKETLAND HO CHI MINH</option>
-                                            <option value={3}>TICKETLAND DA NANG</option> */}
                                         </Select>
                                     </FormControl>  
 
@@ -235,7 +235,7 @@ const MovieInfo = props => {
 
                     <div className="trailer">
                         <div className="trailer_vid">
-                            <iframe width="800" height="500" src={movieInfo.trailer} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="800" height="600" src={movieInfo.trailer} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                     </div>
 
