@@ -169,7 +169,7 @@
 .clickable {
     pointer-events: auto;
 }
-.unclickable {
+.unclickable, .MuiButton-label {
     pointer-events: none; 
 }
       

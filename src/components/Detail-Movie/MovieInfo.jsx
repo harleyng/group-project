@@ -13,6 +13,7 @@ import { Star } from '@material-ui/icons';
 import { yellow } from '@material-ui/core/colors';
 
 import { db } from '../../backend/firebase'
+import { Link } from 'react-router-dom';
 const MovieInfo = props => {
     const [movieInfo, setmovieInfo] = useState({})
     const [cityList, setcityList] = useState([])
@@ -116,7 +117,6 @@ const MovieInfo = props => {
             setshowList([])
             querySnapshot.forEach((doc) => {
                 if  (showList.includes(doc.data()) == false) {
-                    console.log('false')
                     setshowList(oldArray => [...oldArray, doc.data()])
                 }
             })
@@ -127,6 +127,9 @@ const MovieInfo = props => {
 
         $('.detail__listOfDay--item').removeClass("active")
         e.target.className += " active"
+    }
+    const handleShowSelect = (e) => {
+        window.location.href = `${e.target.value}`;
     }
     const generateDate = () => {
         let current = new Date();
@@ -207,8 +210,8 @@ const MovieInfo = props => {
                                     <div className="detail-showlist row">
                                             {showList.map(show => (
                                                 <div className="button-time">
-                                                    <Button variant="contained">{show.startTime}</Button>
-                                            </div>
+                                                    <Button variant="contained" value={show.room_id} onClick={handleShowSelect}>{show.startTime}</Button>
+                                                </div>
                                             ))}
                                     </div>
                                 </div>       
